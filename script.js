@@ -1,25 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const { jsPDF } = window.jspdf;
 
-    const form = document.getElementById('dynamicForm');
-    form.addEventListener('submit', (event) => {
-        event.preventDefault(); // Empêche l'envoi du formulaire par défaut
-
-        // Récupérer les valeurs du formulaire
+    // Fonction pour générer le PDF
+    function generatePDF() {
         const organisme = document.getElementById('organisme').value;
         const otherOrganisme = document.getElementById('otherOrganisme').value;
         const pv = document.getElementById('pv').value;
         const date = document.getElementById('date').value;
 
-        // Créer un nouveau PDF
         const doc = new jsPDF();
-
-        // Ajouter du texte au PDF
         doc.text(`Organisme: ${organisme === 'autre' ? otherOrganisme : organisme}`, 10, 10);
         doc.text(`Procès verbal de la séance d'appel d'offres: ${pv}`, 10, 20);
         doc.text(`Date: ${date}`, 10, 30);
 
-        // Ajouter une ligne pour chaque zone de texte dynamique
         const numTextAreas = document.getElementById('numTextAreas').value;
         if (numTextAreas > 0) {
             let y = 40;
@@ -32,10 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Sauvegarder le PDF
         doc.save('formulaire.pdf');
-    });
+    }
+
+    // Événement de clic pour le bouton de génération du PDF
+    document.getElementById('generatePdfButton').addEventListener('click', generatePDF);
 });
+
+function checkOtherOption() {
+    const organismeSelect = document.getElementById('organisme');
+    const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
+    if (organismeSelect.value === 'autre') {
+        otherOrganismeGroup.style.display = 'block';
+    } else {
+        otherOrganismeGroup.style.display = 'none';
+    }
+}
 
 function promptForTextAreas() {
     const numTextAreas = prompt('Combien de zones de texte souhaitez-vous ajouter ?');
