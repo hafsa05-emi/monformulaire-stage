@@ -127,6 +127,7 @@ footer {
 }
 
 .inline-group input[type="date"] {
-    width: 150px; /* Ajustez la largeur en fonction de vos besoins */
+    width: 120px; /* Ajustez cette largeur pour que le champ de date s'adapte à la phrase */
     margin: 0 10px;
 }
+
