@@ -4,172 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire Professionnel</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #004b49;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        header #logo {
-            max-width: 100px; /* Réduit la taille du logo */
-            height: auto;
-            position: absolute;
-            left: 20px; /* Positionné à gauche */
-            top: 10px; /* Positionné en haut */
-        }
-
-        header h1 {
-            margin: 0;
-            padding-top: 10px; /* Réduit l'espace au-dessus du titre */
-        }
-
-        nav {
-            background-color: #00796b;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 15px 20px;
-            display: block;
-        }
-
-        nav ul li a:hover {
-            background-color: #004d40;
-        }
-
-        main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - 160px);
-            padding: 20px;
-        }
-
-        .container {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            max-width: 800px;
-            width: 100%;
-            margin: 20px;
-        }
-
-        h1, h2 {
-            color: #004b49;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #00796b;
-        }
-
-        .form-group input, .form-group button, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .form-group input[type="date"] {
-            width: auto;
-        }
-
-        .form-group button {
-            background-color: #00796b;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        .form-group button:hover {
-            background-color: #004d40;
-        }
-
-        #textAreasContainer {
-            margin-top: 20px;
-        }
-
-        #textAreasContainer .text-area-group {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        #textAreasContainer textarea {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-
-        #textAreasContainer select {
-            margin-left: 10px;
-        }
-
-        footer {
-            background-color: #004b49;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: absolute;
-            width: 100%;
-            bottom: 0;
-            font-size: 14px;
-        }
-
-        .inline-group {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .inline-group span {
-            margin-right: 10px;
-        }
-
-        .inline-group input[type="date"] {
-            width: 120px;
-            margin: 0 10px;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <header>
@@ -199,7 +35,7 @@
                     </select>
                 </div>
 
-                <div class="form-group hidden" id="otherOrganismeGroup">
+                <div class="form-group" id="otherOrganismeGroup" style="display: none;">
                     <label for="otherOrganisme">Veuillez préciser :</label>
                     <input type="text" id="otherOrganisme" name="otherOrganisme">
                 </div>
@@ -239,43 +75,6 @@
     <footer>
         <p>&copy; 2024 Mon Site Professionnel. Tous droits réservés.</p>
     </footer>
-    <script>
-        function checkOtherOption() {
-            const organismeSelect = document.getElementById('organisme');
-            const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
-            if (organismeSelect.value === 'autre') {
-                otherOrganismeGroup.classList.remove('hidden');
-            } else {
-                otherOrganismeGroup.classList.add('hidden');
-            }
-        }
-
-        function promptForTextAreas() {
-            const numTextAreas = prompt("Combien de zones de texte souhaitez-vous ajouter ?");
-            const numTextAreasInput = document.getElementById('numTextAreas');
-            const textAreasContainer = document.getElementById('textAreasContainer');
-            numTextAreasInput.value = numTextAreas;
-            textAreasContainer.innerHTML = ''; // Clear existing text areas
-            for (let i = 0; i < numTextAreas; i++) {
-                const textAreaGroup = document.createElement('div');
-                textAreaGroup.className = 'text-area-group';
-                textAreaGroup.innerHTML = `
-                    <textarea name="textArea${i + 1}" rows="4" placeholder="Zone de texte ${i + 1}"></textarea>
-                    <select name="role${i + 1}">
-                        <option value="membre">Membre</option>
-                        <option value="président">Président</option>
-                    </select>
-                `;
-                textAreasContainer.appendChild(textAreaGroup);
-            }
-        }
-
-        document.getElementById('generatePdfButton').addEventListener('click', () => {
-            const doc = new jsPDF();
-            const form = document.getElementById('dynamicForm');
-            const formData = new FormData(form);
-
-            doc.text('Formulaire de Contact', 10, 10);
-            formData.forEach((value, key) => {
-                doc.text(`${key}: ${value}`, 10, 20 + 10 * [...formData.keys()].indexOf(key));
-           
+    <script src="script.js"></script>
+</body>
+</html>
