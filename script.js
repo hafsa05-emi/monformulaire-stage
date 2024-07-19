@@ -30,3 +30,4 @@ function checkOtherOption() {
         otherOrganismeGroup.style.display = 'none';
     }
 }
+
