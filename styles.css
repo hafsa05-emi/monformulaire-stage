@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -120,12 +119,14 @@ footer {
 .inline-group {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .inline-group span {
     margin-right: 10px;
 }
 
-.inline-group input {
+.inline-group input[type="date"] {
+    width: 150px; /* Ajustez la largeur en fonction de vos besoins */
     margin: 0 10px;
 }
