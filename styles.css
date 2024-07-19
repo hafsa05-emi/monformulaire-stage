@@ -100,18 +100,19 @@ h1, h2 {
 
 #textAreasContainer .text-area-group {
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
 }
 
 #textAreasContainer textarea {
-    width: calc(100% - 22px);
+    flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin-bottom: 5px;
+    margin-right: 10px;
 }
 
 #textAreasContainer select {
-    width: auto;
     margin-left: 10px;
 }
 
