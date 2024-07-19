@@ -98,23 +98,32 @@ h1, h2 {
     margin-top: 15px;
 }
 
+#textAreasContainer .text-area-group {
+    margin-bottom: 15px;
+}
+
 #textAreasContainer textarea {
     width: calc(100% - 22px);
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+#textAreasContainer select {
+    width: auto;
+    margin-left: 10px;
 }
 
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 5px 0; /* Réduit la hauteur du pied de page */
+    padding: 5px 0;
     position: absolute;
     width: 100%;
     bottom: 0;
-    font-size: 12px; /* Réduit la taille de la police */
+    font-size: 12px;
 }
 
 .inline-group {
@@ -128,6 +137,7 @@ footer {
 }
 
 .inline-group input[type="date"] {
-    width: 120px; /* Ajustez cette largeur pour que le champ de date s'adapte à la phrase */
+    width: 120px;
     margin: 0 10px;
 }
+
