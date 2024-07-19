@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -8,8 +9,22 @@ body {
 header {
     background-color: #004b49;
     color: #fff;
-    padding: 20px 0;
+    padding: 20px;
     text-align: center;
+    position: relative;
+}
+
+header #logo {
+    max-width: 120px; /* Ajustez la taille du logo ici */
+    height: auto;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+header h1 {
+    margin: 0;
+    padding-top: 10px;
 }
 
 nav {
@@ -129,29 +144,22 @@ footer {
     bottom: 0;
     font-size: 14px;
 }
-header {
-    background-color: #004b49;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    position: relative;
+
+.inline-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-header #logo {
-    max-width: 150px; /* Ajustez selon la taille de votre logo */
-    height: auto;
-    position: absolute;
-    left: 20px; /* Positionné à gauche, ajustez si nécessaire */
-    top: 20px; /* Positionné en haut, ajustez si nécessaire */
+.inline-group span {
+    margin-right: 10px;
 }
 
-header h1 {
-    margin: 0;
-    padding-top: 20px; /* Ajoutez de l'espace pour que le texte ne soit pas trop près du logo */
+.inline-group input[type="date"] {
+    width: 120px;
+    margin: 0 10px;
 }
 
-nav {
-    background-color: #00796b;
+.hidden {
+    display: none;
 }
-
-/* Le reste de vos styles */
