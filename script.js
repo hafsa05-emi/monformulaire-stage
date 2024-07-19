@@ -29,7 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Événement de clic pour le bouton de génération du PDF
-    document.getElementById('generatePdfButton').addEventListener('click', generatePDF);
+    const generatePdfButton = document.getElementById('generatePdfButton');
+    if (generatePdfButton) {
+        generatePdfButton.addEventListener('click', generatePDF);
+    } else {
+        console.error('Bouton pour générer le PDF non trouvé.');
+    }
 });
 
 function checkOtherOption() {
@@ -49,8 +54,5 @@ function promptForTextAreas() {
     for (let i = 0; i < numTextAreas; i++) {
         const textarea = document.createElement('textarea');
         textarea.id = `textArea${i}`;
-        textarea.placeholder = `Zone de texte ${i + 1}`;
-        container.appendChild(textarea);
-    }
-    document.getElementById('numTextAreas').value = numTextAreas;
-}
+        textarea.placeholder = `Zone de texte
+
