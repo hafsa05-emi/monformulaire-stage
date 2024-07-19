@@ -115,3 +115,14 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+.inline-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inline-group label, .inline-group span {
+    margin-right: 10px;
+    white-space: nowrap;
+}
