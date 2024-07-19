@@ -1,5 +1,12 @@
-function addTextAreas() {
-    const numTextAreas = document.getElementById('numTextAreas').value;
+function promptForTextAreas() {
+    const numTextAreas = prompt("Entrez le nombre de zones de texte à ajouter:");
+    if (numTextAreas !== null && numTextAreas > 0) {
+        document.getElementById('numTextAreas').value = numTextAreas;
+        addTextAreas(numTextAreas);
+    }
+}
+
+function addTextAreas(numTextAreas) {
     const container = document.getElementById('textAreasContainer');
     
     // Clear any existing text areas
