@@ -18,8 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let y = 40;
             for (let i = 0; i < numTextAreas; i++) {
                 const textArea = document.getElementById(`textArea${i}`);
+                const roleSelect = document.getElementById(`role${i}`);
                 if (textArea) {
-                    doc.text(textArea.value, 10, y);
+                    doc.text(`${textArea.value} (${roleSelect.value})`, 10, y);
                     y += 10;
                 }
             }
@@ -43,16 +44,4 @@ function checkOtherOption() {
     if (organismeSelect.value === 'autre') {
         otherOrganismeGroup.style.display = 'block';
     } else {
-        otherOrganismeGroup.style.display = 'none';
-    }
-}
-
-function promptForTextAreas() {
-    const numTextAreas = prompt('Combien de zones de texte souhaitez-vous ajouter ?');
-    const container = document.getElementById('textAreasContainer');
-    container.innerHTML = ''; // Réinitialiser le conteneur
-    for (let i = 0; i < numTextAreas; i++) {
-        const textarea = document.createElement('textarea');
-        textarea.id = `textArea${i}`;
-        textarea.placeholder = `Zone de texte
-
+        otherOrganismeGroup.style.display = 'none
