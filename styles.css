@@ -1,19 +1,19 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
+    background-color: #004b49;
+    color: #fff;
+    padding: 20px 0;
     text-align: center;
 }
 
 nav {
-    background-color: #333;
+    background-color: #00796b;
 }
 
 nav ul {
@@ -25,77 +25,80 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 nav ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 15px 20px;
     display: block;
 }
 
 nav ul li a:hover {
-    background-color: #555;
+    background-color: #004d40;
 }
 
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px);
-    background: url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
+    min-height: calc(100vh - 160px);
+    padding: 20px;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.9);
+    background: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 600px;
+    padding: 30px;
+    max-width: 800px;
     width: 100%;
     margin: 20px;
 }
 
 h1, h2 {
-    text-align: center;
-    color: #333;
+    color: #004b49;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
-    color: #555;
+    color: #00796b;
 }
 
 .form-group input, .form-group button, .form-group select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
+.form-group input[type="date"] {
+    width: auto;
+}
+
 .form-group button {
-    background-color: #007bff;
+    background-color: #00796b;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 10px;
 }
 
 .form-group button:hover {
-    background-color: #0056b3;
+    background-color: #004d40;
 }
 
 #textAreasContainer {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 #textAreasContainer .text-area-group {
@@ -117,28 +120,12 @@ h1, h2 {
 }
 
 footer {
-    background-color: #333;
+    background-color: #004b49;
     color: white;
     text-align: center;
-    padding: 5px 0;
+    padding: 10px 0;
     position: absolute;
     width: 100%;
     bottom: 0;
-    font-size: 12px;
+    font-size: 14px;
 }
-
-.inline-group {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.inline-group span {
-    margin-right: 10px;
-}
-
-.inline-group input[type="date"] {
-    width: 120px;
-    margin: 0 10px;
-}
-
