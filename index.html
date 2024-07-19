@@ -1,11 +1,172 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire Professionnel</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #004b49;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header #logo {
+            max-width: 150px; /* Ajustez selon la taille de votre logo */
+            height: auto;
+            position: absolute;
+            left: 20px; /* Positionné à gauche */
+            top: 20px; /* Positionné en haut */
+        }
+
+        header h1 {
+            margin: 0;
+            padding-top: 20px; /* Ajoutez de l'espace pour que le texte ne soit pas trop près du logo */
+        }
+
+        nav {
+            background-color: #00796b;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: #004d40;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 160px);
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #004b49;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #00796b;
+        }
+
+        .form-group input, .form-group button, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="date"] {
+            width: auto;
+        }
+
+        .form-group button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .form-group button:hover {
+            background-color: #004d40;
+        }
+
+        #textAreasContainer {
+            margin-top: 20px;
+        }
+
+        #textAreasContainer .text-area-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        #textAreasContainer textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        #textAreasContainer select {
+            margin-left: 10px;
+        }
+
+        footer {
+            background-color: #004b49;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            font-size: 14px;
+        }
+
+        .inline-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .inline-group span {
+            margin-right: 10px;
+        }
+
+        .inline-group input[type="date"] {
+            width: 120px;
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -24,7 +185,51 @@
         <div class="container">
             <h2>Formulaire de Contact</h2>
             <form id="dynamicForm">
-                <!-- Le reste du formulaire -->
+                <div class="form-group">
+                    <label for="organisme">Organisme :</label>
+                    <select id="organisme" name="organisme" onchange="checkOtherOption()">
+                        <option value="ministère">Ministère</option>
+                        <option value="collectivité territoriale">Collectivité territoriale</option>
+                        <option value="établissement public">Établissement public</option>
+                        <option value="personne morale de droit public">Personne morale de droit public</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="otherOrganismeGroup" style="display: none;">
+                    <label for="otherOrganisme">Veuillez préciser :</label>
+                    <input type="text" id="otherOrganisme" name="otherOrganisme">
+                </div>
+
+                <div class="form-group">
+                    <label for="pv">Procès verbal de la séance d'appel d'offres :</label>
+                    <select id="pv" name="pv">
+                        <option value="ouverte">Ouverte</option>
+                        <option value="ouverte simplifiée">Ouverte simplifiée</option>
+                        <option value="restreinte">Restreinte</option>
+                    </select>
+                </div>
+
+                <div class="form-group inline-group">
+                    <span>Le</span>
+                    <input type="date" id="date" name="date" required>
+                    <span>La commission d'appel d'offres composée de :</span>
+                </div>
+
+                <div class="form-group hidden">
+                    <input type="hidden" id="numTextAreas" name="numTextAreas" value="0">
+                    <label for="addTextArea">Ajouter des zones de texte :</label>
+                    <button type="button" onclick="promptForTextAreas()">Ajouter</button>
+                </div>
+
+                <div id="textAreasContainer"></div>
+
+                <div class="form-group">
+                    <input type="submit" value="Envoyer">
+                </div>
+                <div class="form-group">
+                    <button type="button" id="generatePdfButton">Générer PDF</button>
+                </div>
             </form>
         </div>
     </main>
