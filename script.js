@@ -20,3 +20,13 @@ function addTextAreas(numTextAreas) {
         container.appendChild(textArea);
     }
 }
+
+function checkOtherOption() {
+    const organismeSelect = document.getElementById('organisme');
+    const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
+    if (organismeSelect.value === 'autre') {
+        otherOrganismeGroup.style.display = 'block';
+    } else {
+        otherOrganismeGroup.style.display = 'none';
+    }
+}
