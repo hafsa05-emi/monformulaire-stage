@@ -44,4 +44,4 @@ function checkOtherOption() {
     if (organismeSelect.value === 'autre') {
         otherOrganismeGroup.style.display = 'block';
     } else {
-        otherOrganismeGroup.style.display = 'none
+        otherOrganismeGroup
