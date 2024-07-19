@@ -21,7 +21,7 @@
         }
 
         header #logo {
-            max-width: 120px; /* Réduit la taille du logo */
+            max-width: 100px; /* Réduit la taille du logo */
             height: auto;
             position: absolute;
             left: 20px; /* Positionné à gauche */
@@ -239,6 +239,43 @@
     <footer>
         <p>&copy; 2024 Mon Site Professionnel. Tous droits réservés.</p>
     </footer>
-    <script src="script.js"></script>
-</body>
-</html>
+    <script>
+        function checkOtherOption() {
+            const organismeSelect = document.getElementById('organisme');
+            const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
+            if (organismeSelect.value === 'autre') {
+                otherOrganismeGroup.classList.remove('hidden');
+            } else {
+                otherOrganismeGroup.classList.add('hidden');
+            }
+        }
+
+        function promptForTextAreas() {
+            const numTextAreas = prompt("Combien de zones de texte souhaitez-vous ajouter ?");
+            const numTextAreasInput = document.getElementById('numTextAreas');
+            const textAreasContainer = document.getElementById('textAreasContainer');
+            numTextAreasInput.value = numTextAreas;
+            textAreasContainer.innerHTML = ''; // Clear existing text areas
+            for (let i = 0; i < numTextAreas; i++) {
+                const textAreaGroup = document.createElement('div');
+                textAreaGroup.className = 'text-area-group';
+                textAreaGroup.innerHTML = `
+                    <textarea name="textArea${i + 1}" rows="4" placeholder="Zone de texte ${i + 1}"></textarea>
+                    <select name="role${i + 1}">
+                        <option value="membre">Membre</option>
+                        <option value="président">Président</option>
+                    </select>
+                `;
+                textAreasContainer.appendChild(textAreaGroup);
+            }
+        }
+
+        document.getElementById('generatePdfButton').addEventListener('click', () => {
+            const doc = new jsPDF();
+            const form = document.getElementById('dynamicForm');
+            const formData = new FormData(form);
+
+            doc.text('Formulaire de Contact', 10, 10);
+            formData.forEach((value, key) => {
+                doc.text(`${key}: ${value}`, 10, 20 + 10 * [...formData.keys()].indexOf(key));
+           
