@@ -129,3 +129,29 @@ footer {
     bottom: 0;
     font-size: 14px;
 }
+header {
+    background-color: #004b49;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+header #logo {
+    max-width: 150px; /* Ajustez selon la taille de votre logo */
+    height: auto;
+    position: absolute;
+    left: 20px; /* Positionné à gauche, ajustez si nécessaire */
+    top: 20px; /* Positionné en haut, ajustez si nécessaire */
+}
+
+header h1 {
+    margin: 0;
+    padding-top: 20px; /* Ajoutez de l'espace pour que le texte ne soit pas trop près du logo */
+}
+
+nav {
+    background-color: #00796b;
+}
+
+/* Le reste de vos styles */
