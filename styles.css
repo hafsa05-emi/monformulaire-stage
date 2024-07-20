@@ -1,5 +1,5 @@
-/* Ajoutez ces styles à votre fichier CSS existant */
 
+/* Mise en page générale */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,101 +8,128 @@ body {
 }
 
 header {
-    background-color: #004d99;
+    background-color: #0056b3;
     color: white;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
 }
 
-#logo {
-    max-width: 150px;
-    height: auto;
+header img {
+    width: 100px; /* Ajustez la taille du logo */
+    vertical-align: middle;
+}
+
+nav {
+    background-color: #333;
+    color: white;
 }
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 0;
-    background-color: #333;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 10px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    padding: 10px;
-    display: inline-block;
+    font-weight: bold;
 }
 
 nav ul li a:hover {
-    background-color: #575757;
+    text-decoration: underline;
 }
 
 .container {
-    max-width: 800px;
+    width: 80%;
     margin: 20px auto;
+    background: white;
     padding: 20px;
-    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+}
+
+h2 {
+    color: #0056b3;
 }
 
 .form-group {
     margin-bottom: 15px;
 }
 
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input[type="text"], .form-group input[type="number"], .form-group input[type="date"], .form-group select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group input[type="number"] {
+    width: 100px; /* Ajustez la largeur des champs de nombre */
+}
+
+.form-group button {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-group button:hover {
+    background-color: #003d7a;
+}
+
 .inline-group {
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .inline-group span {
     margin-right: 10px;
 }
 
-#lieu, #numero, #objet, #avis {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px 15px;
-    border: none;
-    color: white;
-    background-color: #004d99;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #003366;
-}
-
-input[type="submit"] {
-    background-color: #28a745;
-}
-
-input[type="submit"]:hover {
-    background-color: #218838;
-}
-
-input[type="number"] {
-    width: 80px;
+#presidentFieldsContainer, #memberFieldsContainer {
+    margin-top: 15px;
 }
 
 footer {
-    background-color: #004d99;
+    background-color: #333;
     color: white;
     text-align: center;
     padding: 10px;
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
