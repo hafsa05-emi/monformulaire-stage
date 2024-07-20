@@ -1,9 +1,11 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const organismeSelect = document.getElementById('organisme');
     const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
     const memberFieldsContainer = document.getElementById('memberFieldsContainer');
     const concurrentsFieldsContainer = document.getElementById('concurrentsFieldsContainer');
+    const concurrentsMessage = document.getElementById('concurrentsMessage');
 
     // Fonction pour gérer l'option autre pour organisme
     function checkOtherOption() {
@@ -48,18 +50,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour créer les champs des concurrents
     function createConcurrentsFields() {
-        const number = document.getElementById('concurrentsNumber').value;
+        const number = parseInt(document.getElementById('concurrentsNumber').value, 10);
         concurrentsFieldsContainer.innerHTML = '';
+        concurrentsMessage.innerHTML = ''; // Réinitialiser le message
 
-        for (let i = 0; i < number; i++) {
-            concurrentsFieldsContainer.innerHTML += `
-                <div class="form-group">
-                    <label for="concurrent${i}">Concurrent ${i + 1} :</label>
-                    <input type="text" id="concurrent${i}" name="concurrent${i}" placeholder="Nom du concurrent">
-                </div>
-            `;
+        if (number === 0) {
+            concurrentsMessage.innerHTML = 'Aucun concurrent à afficher.';
+        } else {
+            for (let i = 0; i < number; i++) {
+                concurrentsFieldsContainer.innerHTML += `
+                    <div class="form-group">
+                        <label for="concurrent${i}">Concurrent ${i + 1} :</label>
+                        <input type="text" id="concurrent${i}" name="concurrent${i}" placeholder="Nom du concurrent">
+                    </div>
+                `;
+            }
+            document.getElementById('concurrentsNumber').parentElement.style.display = 'none';
         }
-        document.getElementById('concurrentsNumber').parentElement.style.display = 'none';
     }
 
     // Fonction pour générer le PDF
