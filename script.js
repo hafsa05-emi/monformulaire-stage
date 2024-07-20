@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         y += 10;
 
         // Add concurrents
-        doc.text('Concurrents :', 10, y);
+        doc.text('À l\'ouverture de la séance, le président dispose sur le bureau tous les plis reçus des concurrents, à savoir :', 10, y);
         y += 10;
         const numConcurrents = document.getElementById('concurrentsNumber').value;
         for (let i = 0; i < numConcurrents; i++) {
@@ -114,5 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.save('formulaire.pdf');
     }
 
+    // Event listeners
+    document.getElementById('organisme').addEventListener('change', checkOtherOption);
     document.getElementById('generatePdfButton').addEventListener('click', generatePDF);
+    document.querySelector('button[onclick="createPresidentFields()"]').addEventListener('click', createPresidentFields);
+    document.querySelector('button[onclick="createMemberFields()"]').addEventListener('click', createMemberFields);
+    document.querySelector('button[onclick="createConcurrentsFields()"]').addEventListener('click', createConcurrentsFields);
 });
