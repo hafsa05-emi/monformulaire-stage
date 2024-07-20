@@ -13,8 +13,15 @@ function showFields() {
     const numMembers = parseInt(document.getElementById('numMembers').value, 10);
 
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
-    presidentFieldsContainer.innerHTML = ''; // Clear existing fields
+    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
+    const numPresidentsGroup = document.getElementById('numPresidents').parentElement;
+    const numMembersGroup = document.getElementById('numMembers').parentElement;
 
+    // Clear existing fields
+    presidentFieldsContainer.innerHTML = '';
+    memberFieldsContainer.innerHTML = '';
+
+    // Generate fields for presidents
     for (let i = 0; i < numPresidents; i++) {
         const fieldGroup = document.createElement('div');
         fieldGroup.className = 'form-group';
@@ -25,9 +32,7 @@ function showFields() {
         presidentFieldsContainer.appendChild(fieldGroup);
     }
 
-    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
-    memberFieldsContainer.innerHTML = ''; // Clear existing fields
-
+    // Generate fields for members
     for (let i = 0; i < numMembers; i++) {
         const fieldGroup = document.createElement('div');
         fieldGroup.className = 'form-group';
@@ -39,8 +44,8 @@ function showFields() {
     }
 
     // Hide the input fields for number of presidents and members
-    document.getElementById('numPresidents').parentElement.style.display = 'none';
-    document.getElementById('numMembers').parentElement.style.display = 'none';
+    numPresidentsGroup.style.display = 'none';
+    numMembersGroup.style.display = 'none';
 }
 
 document.getElementById('generatePdfButton').addEventListener('click', function() {
@@ -58,3 +63,4 @@ document.getElementById('generatePdfButton').addEventListener('click', function(
 
     doc.save('formulaire.pdf');
 });
+
