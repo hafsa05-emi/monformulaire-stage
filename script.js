@@ -1,8 +1,9 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('organisme').addEventListener('change', checkOtherOption);
     document.getElementById('createConcurrentsFieldsButton').addEventListener('click', createConcurrentsFields);
     document.getElementById('createReponsesFieldsButton').addEventListener('click', createReponsesFields);
+    document.getElementById('createPresidentFieldsButton').addEventListener('click', createPresidentFields);
+    document.getElementById('createMemberFieldsButton').addEventListener('click', createMemberFields);
     document.getElementById('generatePdfButton').addEventListener('click', generatePdf);
 
     function checkOtherOption() {
@@ -15,101 +16,78 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function promptForTextAreas() {
-        const numTextAreas = prompt("Combien de zones de texte voulez-vous ajouter ?");
-        if (numTextAreas && !isNaN(numTextAreas) && numTextAreas > 0) {
-            const container = document.getElementById('textAreasContainer');
-            container.innerHTML = ''; // Réinitialiser le contenu précédent
-
-            for (let i = 0; i < numTextAreas; i++) {
-                const textArea = document.createElement('textarea');
-                textArea.rows = 4;
-                textArea.cols = 50;
-                textArea.placeholder = `Zone de texte ${i + 1}`;
-                container.appendChild(textArea);
-                container.appendChild(document.createElement('br'));
+    function createConcurrentsFields() {
+        const container = document.getElementById('concurrentsFieldsContainer');
+        container.innerHTML = ''; // Efface le contenu précédent
+        const number = parseInt(document.getElementById('concurrentsNumber').value, 10);
+        
+        if (number > 0) {
+            for (let i = 1; i <= number; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `concurrent${i}`;
+                input.placeholder = `Nom du concurrent ${i}`;
+                input.className = 'form-group';
+                container.appendChild(input);
             }
+        } // Pas de `else` pour ne rien afficher lorsque le nombre est 0
+    }
+
+    function createReponsesFields() {
+        const container = document.getElementById('reponsesFieldsContainer');
+        container.innerHTML = ''; // Efface le contenu précédent
+        const number = parseInt(document.getElementById('reponsesNumber').value, 10);
+
+        if (number > 0) {
+            for (let i = 1; i <= number; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `reponse${i}`;
+                input.placeholder = `Nom du concurrent ayant répondu ${i}`;
+                input.className = 'form-group';
+                container.appendChild(input);
+            }
+        } else if (number === 0) {
+            container.innerHTML = 'NEANT';
         }
     }
 
     function createPresidentFields() {
-        const number = parseInt(document.getElementById('presidentsNumber').value, 10);
         const container = document.getElementById('presidentFieldsContainer');
-        container.innerHTML = '';
+        container.innerHTML = ''; // Efface le contenu précédent
+        const number = parseInt(document.getElementById('presidentsNumber').value, 10);
 
-        for (let i = 0; i < number; i++) {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.placeholder = `Président ${i + 1}`;
-            container.appendChild(input);
-            container.appendChild(document.createElement('br'));
-        }
+        if (number > 0) {
+            for (let i = 1; i <= number; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `president${i}`;
+                input.placeholder = `Nom du président ${i}`;
+                input.className = 'form-group';
+                container.appendChild(input);
+            }
+        } // Pas de `else` pour ne rien afficher lorsque le nombre est 0
     }
 
     function createMemberFields() {
-        const number = parseInt(document.getElementById('membersNumber').value, 10);
         const container = document.getElementById('memberFieldsContainer');
-        container.innerHTML = '';
-
-        for (let i = 0; i < number; i++) {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.placeholder = `Membre ${i + 1}`;
-            container.appendChild(input);
-            container.appendChild(document.createElement('br'));
-        }
-    }
-
-    function createConcurrentsFields() {
-        const number = parseInt(document.getElementById('concurrentsNumber').value, 10);
-        const container = document.getElementById('concurrentsFieldsContainer');
-        container.innerHTML = '';  // Réinitialiser les champs existants
+        container.innerHTML = ''; // Efface le contenu précédent
+        const number = parseInt(document.getElementById('membersNumber').value, 10);
 
         if (number > 0) {
-            for (let i = 0; i < number; i++) {
+            for (let i = 1; i <= number; i++) {
                 const input = document.createElement('input');
                 input.type = 'text';
-                input.placeholder = `Concurrent ${i + 1}`;
+                input.name = `member${i}`;
+                input.placeholder = `Nom du membre ${i}`;
+                input.className = 'form-group';
                 container.appendChild(input);
-                container.appendChild(document.createElement('br'));
             }
-        }
-    }
-
-    function createReponsesFields() {
-        const number = parseInt(document.getElementById('reponsesNumber').value, 10);
-        const container = document.getElementById('reponsesFieldsContainer');
-        container.innerHTML = '';  // Réinitialiser les champs existants
-
-        if (number > 0) {
-            for (let i = 0; i < number; i++) {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.placeholder = `Concurrent ayant répondu ${i + 1}`;
-                container.appendChild(input);
-                container.appendChild(document.createElement('br'));
-            }
-        } else if (number === 0) {
-            const neantMessage = document.createElement('p');
-            neantMessage.textContent = 'NEANT';
-            container.appendChild(neantMessage);
-        }
+        } // Pas de `else` pour ne rien afficher lorsque le nombre est 0
     }
 
     function generatePdf() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        const form = document.getElementById('dynamicForm');
-        const formData = new FormData(form);
-
-        formData.forEach((value, key) => {
-            doc.text(`${key}: ${value}`, 10, 10);
-        });
-
-        doc.save('formulaire.pdf');
+        // Votre logique pour générer le PDF
     }
-
-    document.getElementById('createPresidentFieldsButton').addEventListener('click', createPresidentFields);
-    document.getElementById('createMemberFieldsButton').addEventListener('click', createMemberFields);
 });
+
