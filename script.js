@@ -8,34 +8,28 @@ function checkOtherOption() {
     }
 }
 
-function updateFields(role) {
-    const numFields = document.getElementById(`num${role.charAt(0).toUpperCase() + role.slice(1)}s`).value;
-    const fieldsContainer = document.getElementById(`${role}FieldsContainer`);
-    fieldsContainer.innerHTML = ''; // Clear existing fields
+function showFields() {
+    const numPresidents = document.getElementById('numPresidents').value;
+    const numMembers = document.getElementById('numMembers').value;
 
-    for (let i = 0; i < numFields; i++) {
+    document.querySelector('.form-group.hidden').style.display = 'none';
+
+    const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
+    presidentFieldsContainer.innerHTML = ''; // Clear existing fields
+
+    for (let i = 0; i < numPresidents; i++) {
         const fieldGroup = document.createElement('div');
         fieldGroup.className = 'field-group';
         fieldGroup.innerHTML = `
-            <textarea name="${role}TextArea${i + 1}" rows="2" placeholder="Zone de texte ${role} ${i + 1}"></textarea>
+            <label for="president${i + 1}">Président ${i + 1} :</label>
+            <input type="text" id="president${i + 1}" name="president${i + 1}" placeholder="Nom du président ${i + 1}">
         `;
-        fieldsContainer.appendChild(fieldGroup);
-    }
-}
-
-document.getElementById('generatePdfButton').addEventListener('click', async () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const form = document.getElementById('dynamicForm');
-    const formData = new FormData(form);
-
-    doc.text('Formulaire de Contact', 10, 10);
-    let y = 20;
-
-    for (let [key, value] of formData.entries()) {
-        doc.text(`${key}: ${value}`, 10, y);
-        y += 10;
+        presidentFieldsContainer.appendChild(fieldGroup);
     }
 
-    doc.save('formulaire.pdf');
-});
+    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
+    memberFieldsContainer.innerHTML = ''; // Clear existing fields
+
+    for (let i = 0; i < numMembers; i++) {
+        const fieldGroup = document.createElement
+
