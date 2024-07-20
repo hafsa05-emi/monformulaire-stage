@@ -1,78 +1,103 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const organismeSelect = document.getElementById('organisme');
-    const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
-    const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
-    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
-
-    // Function to handle other option for organisme
+document.addEventListener('DOMContentLoaded', function() {
     function checkOtherOption() {
-        if (organismeSelect.value === 'autre') {
-            otherOrganismeGroup.style.display = 'block';
-        } else {
-            otherOrganismeGroup.style.display = 'none';
-        }
+        const organisme = document.getElementById('organisme').value;
+        const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
+        otherOrganismeGroup.style.display = (organisme === 'autre') ? 'block' : 'none';
     }
 
-    // Function to create president fields
     function createPresidentFields() {
-        const number = document.getElementById('presidentsNumber').value;
-        presidentFieldsContainer.innerHTML = '';
+        const numPresidents = parseInt(document.getElementById('numPresidents').value, 10);
+        const container = document.getElementById('presidentFieldsContainer');
+        container.innerHTML = '';
 
-        for (let i = 0; i < number; i++) {
-            presidentFieldsContainer.innerHTML += `
-                <div class="form-group">
-                    <label for="president${i}">Président ${i + 1} :</label>
-                    <input type="text" id="president${i}" name="president${i}" placeholder="Nom du président">
-                </div>
+        for (let i = 0; i < numPresidents; i++) {
+            const div = document.createElement('div');
+            div.className = 'form-group';
+            div.innerHTML = `
+                <label for="president${i}">Président ${i + 1} :</label>
+                <input type="text" id="president${i}" name="president${i}">
+                <select id="presidentRole${i}" name="presidentRole${i}">
+                    <option value="président">Président</option>
+                    <option value="membre">Membre</option>
+                </select>
             `;
+            container.appendChild(div);
         }
-        document.getElementById('presidentsNumber').parentElement.style.display = 'none';
+
+        // Hide the number input field after creating the fields
+        document.getElementById('numPresidents').style.display = 'none';
     }
 
-    // Function to create member fields
     function createMemberFields() {
-        const number = document.getElementById('membersNumber').value;
-        memberFieldsContainer.innerHTML = '';
+        const numMembers = parseInt(document.getElementById('numMembers').value, 10);
+        const container = document.getElementById('memberFieldsContainer');
+        container.innerHTML = '';
 
-        for (let i = 0; i < number; i++) {
-            memberFieldsContainer.innerHTML += `
-                <div class="form-group">
-                    <label for="member${i}">Membre ${i + 1} :</label>
-                    <input type="text" id="member${i}" name="member${i}" placeholder="Nom du membre">
-                </div>
+        for (let i = 0; i < numMembers; i++) {
+            const div = document.createElement('div');
+            div.className = 'form-group';
+            div.innerHTML = `
+                <label for="member${i}">Membre ${i + 1} :</label>
+                <input type="text" id="member${i}" name="member${i}">
+                <select id="memberRole${i}" name="memberRole${i}">
+                    <option value="président">Président</option>
+                    <option value="membre">Membre</option>
+                </select>
             `;
+            container.appendChild(div);
         }
-        document.getElementById('membersNumber').parentElement.style.display = 'none';
+
+        // Hide the number input field after creating the fields
+        document.getElementById('numMembers').style.display = 'none';
     }
 
-    // Function to generate PDF
     function generatePDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-
         doc.text('Formulaire Professionnel', 10, 10);
-        doc.text('Organisme : ' + document.getElementById('organisme').value, 10, 20);
-        doc.text('Procès verbal : ' + document.getElementById('pv').value, 10, 30);
-        doc.text('Date : ' + document.getElementById('date').value, 10, 40);
-        doc.text('Déclaration : ' + document.getElementById('declaration').value, 10, 50);
+        
+        // Capture form data and add to PDF
+        // (This is a simple example. Adjust as necessary for your form)
+        doc.text(`Organisme: ${document.getElementById('organisme').value}`, 10, 20);
+        doc.text(`Procès Verbal: ${document.getElementById('pv').value}`, 10, 30);
+        doc.text(`Date: ${document.getElementById('date').value}`, 10, 40);
 
-        let yPosition = 60;
-        document.querySelectorAll('[id^="president"]').forEach((input) => {
-            doc.text('Président : ' + input.value, 10, yPosition);
-            yPosition += 10;
+        const presidentNames = [];
+        const presidentRoles = [];
+        document.querySelectorAll('[id^="president"]').forEach(input => {
+            if (input.value) {
+                presidentNames.push(input.value);
+            }
         });
+        document.querySelectorAll('[id^="presidentRole"]').forEach(select => {
+            if (select.value) {
+                presidentRoles.push(select.value);
+            }
+        });
+        doc.text(`Présidents: ${presidentNames.join(', ')}`, 10, 50);
 
-        document.querySelectorAll('[id^="member"]').forEach((input) => {
-            doc.text('Membre : ' + input.value, 10, yPosition);
-            yPosition += 10;
+        const memberNames = [];
+        const memberRoles = [];
+        document.querySelectorAll('[id^="member"]').forEach(input => {
+            if (input.value) {
+                memberNames.push(input.value);
+            }
         });
+        document.querySelectorAll('[id^="memberRole"]').forEach(select => {
+            if (select.value) {
+                memberRoles.push(select.value);
+            }
+        });
+        doc.text(`Membres: ${memberNames.join(', ')}`, 10, 60);
+
+        // Add other form data as needed
 
         doc.save('formulaire.pdf');
     }
 
-    // Event listeners
-    document.getElementById('organisme').addEventListener('change', checkOtherOption);
     document.getElementById('generatePdfButton').addEventListener('click', generatePDF);
-    document.querySelector('button[onclick="createPresidentFields()"]').addEventListener('click', createPresidentFields);
-    document.querySelector('button[onclick="createMemberFields()"]').addEventListener('click', createMemberFields);
+
+    window.checkOtherOption = checkOtherOption;
+    window.createPresidentFields = createPresidentFields;
+    window.createMemberFields = createMemberFields;
 });
