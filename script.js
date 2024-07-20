@@ -1,5 +1,10 @@
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Fonction pour vérifier si "Autre" est sélectionné dans le menu déroulant "Organisme"
+    document.getElementById('organisme').addEventListener('change', checkOtherOption);
+    document.getElementById('createConcurrentsFieldsButton').addEventListener('click', createConcurrentsFields);
+    document.getElementById('createReponsesFieldsButton').addEventListener('click', createReponsesFields);
+    document.getElementById('generatePdfButton').addEventListener('click', generatePdf);
+
     function checkOtherOption() {
         const organismeSelect = document.getElementById('organisme');
         const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
@@ -10,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fonction pour créer dynamiquement des zones de texte
     function promptForTextAreas() {
         const numTextAreas = prompt("Combien de zones de texte voulez-vous ajouter ?");
         if (numTextAreas && !isNaN(numTextAreas) && numTextAreas > 0) {
@@ -28,9 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fonction pour créer des champs pour les présidents
     function createPresidentFields() {
-        const number = document.getElementById('presidentsNumber').value;
+        const number = parseInt(document.getElementById('presidentsNumber').value, 10);
         const container = document.getElementById('presidentFieldsContainer');
         container.innerHTML = '';
 
@@ -43,9 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fonction pour créer des champs pour les membres
     function createMemberFields() {
-        const number = document.getElementById('membersNumber').value;
+        const number = parseInt(document.getElementById('membersNumber').value, 10);
         const container = document.getElementById('memberFieldsContainer');
         container.innerHTML = '';
 
@@ -58,18 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fonction pour créer des champs pour les concurrents
-    function createConcurrentFields() {
-        const number = document.getElementById('concurrentNumber').value;
+    function createConcurrentsFields() {
+        const number = parseInt(document.getElementById('concurrentsNumber').value, 10);
         const container = document.getElementById('concurrentsFieldsContainer');
-        const neantMessage = document.getElementById('neantMessage');
+        container.innerHTML = '';  // Réinitialiser les champs existants
 
-        container.innerHTML = '';
-        neantMessage.style.display = 'none';
-
-        if (number === '0') {
-            neantMessage.style.display = 'block';
-        } else if (number > 0) {
+        if (number > 0) {
             for (let i = 0; i < number; i++) {
                 const input = document.createElement('input');
                 input.type = 'text';
@@ -80,20 +76,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Ajout des événements aux boutons pour générer des champs
-    document.querySelector('[onclick="promptForTextAreas()"]').addEventListener('click', promptForTextAreas);
-    document.querySelector('[onclick="createPresidentFields()"]').addEventListener('click', createPresidentFields);
-    document.querySelector('[onclick="createMemberFields()"]').addEventListener('click', createMemberFields);
-    document.querySelector('[onclick="createConcurrentFields()"]').addEventListener('click', createConcurrentFields);
+    function createReponsesFields() {
+        const number = parseInt(document.getElementById('reponsesNumber').value, 10);
+        const container = document.getElementById('reponsesFieldsContainer');
+        container.innerHTML = '';  // Réinitialiser les champs existants
 
-    // Gestion du bouton de génération de PDF (exemple basique)
-    document.getElementById('generatePdfButton').addEventListener('click', function() {
+        if (number > 0) {
+            for (let i = 0; i < number; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `Concurrent ayant répondu ${i + 1}`;
+                container.appendChild(input);
+                container.appendChild(document.createElement('br'));
+            }
+        } else if (number === 0) {
+            const neantMessage = document.createElement('p');
+            neantMessage.textContent = 'NEANT';
+            container.appendChild(neantMessage);
+        }
+    }
+
+    function generatePdf() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-        doc.text("Contenu du formulaire ici", 10, 10);
-        doc.save("formulaire.pdf");
-    });
 
-    // Événement pour la sélection du menu déroulant "Organisme"
-    document.getElementById('organisme').addEventListener('change', checkOtherOption);
+        const form = document.getElementById('dynamicForm');
+        const formData = new FormData(form);
+
+        formData.forEach((value, key) => {
+            doc.text(`${key}: ${value}`, 10, 10);
+        });
+
+        doc.save('formulaire.pdf');
+    }
+
+    document.getElementById('createPresidentFieldsButton').addEventListener('click', createPresidentFields);
+    document.getElementById('createMemberFieldsButton').addEventListener('click', createMemberFields);
 });
