@@ -40,7 +40,7 @@ function showFields() {
     }
 
     // Hide the number fields after displaying the name fields
-    document.getElementById('numFieldsGroup').style.display = 'none';
+    document.querySelectorAll('#numFieldsGroup').forEach(group => group.style.display = 'none');
 }
 
 document.getElementById('generatePdfButton').addEventListener('click', function() {
