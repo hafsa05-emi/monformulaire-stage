@@ -1,14 +1,14 @@
-/* Général */
 body {
     font-family: Arial, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    color: #333;
+    background: #f4f4f4;
 }
 
 header {
-    background-color: #003366;
-    color: white;
+    background: #333;
+    color: #fff;
     padding: 10px 0;
     text-align: center;
 }
@@ -16,50 +16,63 @@ header {
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-    background-color: #004080;
 }
 
 nav ul li {
     display: inline;
-    margin: 0;
+    margin: 0 10px;
 }
 
 nav ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
-    display: inline-block;
-}
-
-nav ul li a:hover {
-    background-color: #0056b3;
 }
 
 .container {
+    width: 80%;
+    margin: 0 auto;
+    background: #fff;
     padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+h2 {
+    text-align: center;
 }
 
 .form-group {
     margin-bottom: 15px;
 }
 
-.form-group label {
+label {
     display: block;
     margin-bottom: 5px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.form-group textarea {
-    resize: vertical;
+button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #555;
 }
 
 .inline-group {
@@ -75,22 +88,6 @@ nav ul li a:hover {
     display: none;
 }
 
-button {
-    background-color: #004080;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-footer {
-    background-color: #003366;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+#presidentFieldsContainer, #memberFieldsContainer {
+    margin-top: 20px;
 }
