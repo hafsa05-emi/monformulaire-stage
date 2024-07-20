@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <img src="logo-radeef.jpeg" alt="Logo de Mon Site Professionnel" id="logo">
+        <img src="logo-radeef.jpeg" alt="Logo Radeef">
         <h1>Mon Site Professionnel</h1>
     </header>
     <nav>
@@ -55,25 +55,33 @@
                     <span>La commission d'appel d'offres composée de :</span>
                 </div>
 
-                <div class="form-group" id="numFieldsGroup">
-                    <label for="numPresidents">Nombre de présidents :</label>
-                    <input type="number" id="numPresidents" name="numPresidents" min="0">
+                <div class="form-group hidden">
+                    <input type="hidden" id="numTextAreas" name="numTextAreas" value="0">
+                    <label for="addTextArea">Ajouter des zones de texte :</label>
+                    <button type="button" onclick="promptForTextAreas()">Ajouter</button>
                 </div>
 
-                <div class="form-group" id="numFieldsGroup2">
-                    <label for="numMembers">Nombre de membres :</label>
-                    <input type="number" id="numMembers" name="numMembers" min="0">
-                </div>
+                <div id="textAreasContainer"></div>
 
                 <div class="form-group">
-                    <button type="button" onclick="showFields()">Valider</button>
+                    <label for="presidentsNumber">Nombre de présidents :</label>
+                    <input type="number" id="presidentsNumber" name="presidentsNumber" min="0">
+                    <button type="button" onclick="createPresidentFields()">Valider</button>
                 </div>
 
                 <div id="presidentFieldsContainer"></div>
+
+                <div class="form-group">
+                    <label for="membersNumber">Nombre de membres :</label>
+                    <input type="number" id="membersNumber" name="membersNumber" min="0">
+                    <button type="button" onclick="createMemberFields()">Valider</button>
+                </div>
+
                 <div id="memberFieldsContainer"></div>
 
                 <div class="form-group">
-                    <p>S'est réunie en séance publique dans le bureau de <input type="text" id="lieu" name="lieu" placeholder="Lieu et adresse"> en vue de procéder à l'ouverture des plis concernant l'appel d'offres ouvert ou restreint sur offres de prix ou au rabais ou à majoration n° <input type="text" id="numero" name="numero" placeholder="Numéro"> relatif à <input type="text" id="objet" name="objet" placeholder="Objet de l'appel d'offres, lieu d'exécution (commune, province, préfecture, région)"> conformément à l'avis publié dans <input type="text" id="avis" name="avis" placeholder="Journaux ou avis avec dates de parution"></p>
+                    <label>Déclaration :</label>
+                    <p>S'est réunie en séance publique dans le bureau de <input type="text" id="lieu" name="lieu" placeholder="Lieu et adresse"> en vue de procéder à l'ouverture des plis concernant l'appel d'offres ouvert ou restreint sur offres de prix ou au rabais ou à majoration n° <input type="text" id="numero" name="numero" placeholder="Numéro"> relatif à <input type="text" id="objet" name="objet" placeholder="Objet et lieu d'exécution"> conformément à l'avis publié dans <input type="text" id="avis" name="avis" placeholder="Journaux et dates de publication"></p>
                 </div>
 
                 <div class="form-group">
@@ -86,7 +94,7 @@
         </div>
     </main>
     <footer>
-        <!-- Le texte du pied de page est supprimé pour éviter qu'il masque le formulaire -->
+        <p>&copy; 2024 Mon Site Professionnel. Tous droits réservés.</p>
     </footer>
     <script src="script.js"></script>
 </body>
