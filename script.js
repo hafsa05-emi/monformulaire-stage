@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const memberFieldsContainer = document.getElementById('memberFieldsContainer');
     const concurrentsFieldsContainer = document.getElementById('concurrentsFieldsContainer');
 
-    // Function to handle other option for organisme
+    // Fonction pour gérer l'option autre pour organisme
     function checkOtherOption() {
         if (organismeSelect.value === 'autre') {
             otherOrganismeGroup.style.display = 'block';
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Function to create president fields
+    // Fonction pour créer les champs des présidents
     function createPresidentFields() {
         const number = document.getElementById('presidentsNumber').value;
         presidentFieldsContainer.innerHTML = '';
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('presidentsNumber').parentElement.style.display = 'none';
     }
 
-    // Function to create member fields
+    // Fonction pour créer les champs des membres
     function createMemberFields() {
         const number = document.getElementById('membersNumber').value;
         memberFieldsContainer.innerHTML = '';
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('membersNumber').parentElement.style.display = 'none';
     }
 
-    // Function to create concurrents fields
+    // Fonction pour créer les champs des concurrents
     function createConcurrentsFields() {
         const number = document.getElementById('concurrentsNumber').value;
         concurrentsFieldsContainer.innerHTML = '';
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('concurrentsNumber').parentElement.style.display = 'none';
     }
 
-    // Function to generate PDF
+    // Fonction pour générer le PDF
     function generatePDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
@@ -72,49 +72,32 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.text('Procès verbal : ' + document.getElementById('pv').value, 10, 30);
         doc.text('Date : ' + document.getElementById('date').value, 10, 40);
 
-        // Add presidents
-        let y = 50;
-        const numPresidents = document.getElementById('presidentsNumber').value;
-        for (let i = 0; i < numPresidents; i++) {
-            const president = document.getElementById(`president${i}`).value;
-            doc.text(`Président ${i + 1} : ${president}`, 10, y);
-            y += 10;
-        }
+        doc.text('Déclaration :', 10, 50);
+        doc.text('Lieu et adresse : ' + document.getElementById('declarationPlace').value, 10, 60);
+        doc.text('Numéro : ' + document.getElementById('declarationNumber').value, 10, 70);
+        doc.text('Objet de l\'appel d\'offres : ' + document.getElementById('declarationObject').value, 10, 80);
+        doc.text('Journaux ou avis et dates de parution : ' + document.getElementById('declarationPublication').value, 10, 90);
 
-        // Add members
-        const numMembers = document.getElementById('membersNumber').value;
-        for (let i = 0; i < numMembers; i++) {
-            const member = document.getElementById(`member${i}`).value;
-            doc.text(`Membre ${i + 1} : ${member}`, 10, y);
-            y += 10;
-        }
+        let yPosition = 100;
+        document.querySelectorAll('[id^="president"]').forEach((input) => {
+            doc.text('Président : ' + input.value, 10, yPosition);
+            yPosition += 10;
+        });
 
-        // Add declaration
-        doc.text('Déclaration :', 10, y);
-        y += 10;
-        doc.text(`Lieu : ${document.getElementById('declarationPlace').value}`, 10, y);
-        y += 10;
-        doc.text(`Numéro : ${document.getElementById('declarationNumber').value}`, 10, y);
-        y += 10;
-        doc.text(`Objet : ${document.getElementById('declarationObject').value}`, 10, y);
-        y += 10;
-        doc.text(`Publication : ${document.getElementById('declarationPublication').value}`, 10, y);
-        y += 10;
+        document.querySelectorAll('[id^="member"]').forEach((input) => {
+            doc.text('Membre : ' + input.value, 10, yPosition);
+            yPosition += 10;
+        });
 
-        // Add concurrents
-        doc.text('À l\'ouverture de la séance, le président dispose sur le bureau tous les plis reçus des concurrents, à savoir :', 10, y);
-        y += 10;
-        const numConcurrents = document.getElementById('concurrentsNumber').value;
-        for (let i = 0; i < numConcurrents; i++) {
-            const concurrent = document.getElementById(`concurrent${i}`).value;
-            doc.text(`Concurrent ${i + 1} : ${concurrent}`, 10, y);
-            y += 10;
-        }
+        document.querySelectorAll('[id^="concurrent"]').forEach((input) => {
+            doc.text('Concurrent : ' + input.value, 10, yPosition);
+            yPosition += 10;
+        });
 
         doc.save('formulaire.pdf');
     }
 
-    // Event listeners
+    // Écouteurs d'événements
     document.getElementById('organisme').addEventListener('change', checkOtherOption);
     document.getElementById('generatePdfButton').addEventListener('click', generatePDF);
     document.querySelector('button[onclick="createPresidentFields()"]').addEventListener('click', createPresidentFields);
