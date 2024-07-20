@@ -13,15 +13,8 @@ function showFields() {
     const numMembers = parseInt(document.getElementById('numMembers').value, 10);
 
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
-    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
-    const numPresidentsGroup = document.getElementById('numPresidents').parentElement;
-    const numMembersGroup = document.getElementById('numMembers').parentElement;
+    presidentFieldsContainer.innerHTML = ''; // Clear existing fields
 
-    // Clear existing fields
-    presidentFieldsContainer.innerHTML = '';
-    memberFieldsContainer.innerHTML = '';
-
-    // Generate fields for presidents
     for (let i = 0; i < numPresidents; i++) {
         const fieldGroup = document.createElement('div');
         fieldGroup.className = 'form-group';
@@ -32,7 +25,9 @@ function showFields() {
         presidentFieldsContainer.appendChild(fieldGroup);
     }
 
-    // Generate fields for members
+    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
+    memberFieldsContainer.innerHTML = ''; // Clear existing fields
+
     for (let i = 0; i < numMembers; i++) {
         const fieldGroup = document.createElement('div');
         fieldGroup.className = 'form-group';
@@ -44,8 +39,12 @@ function showFields() {
     }
 
     // Hide the input fields for number of presidents and members
-    numPresidentsGroup.style.display = 'none';
-    numMembersGroup.style.display = 'none';
+    document.getElementById('numPresidents').parentElement.style.display = 'none';
+    document.getElementById('numMembers').parentElement.style.display = 'none';
+
+    // Show the containers for president and member fields
+    presidentFieldsContainer.style.display = 'block';
+    memberFieldsContainer.style.display = 'block';
 }
 
 document.getElementById('generatePdfButton').addEventListener('click', function() {
@@ -63,4 +62,5 @@ document.getElementById('generatePdfButton').addEventListener('click', function(
 
     doc.save('formulaire.pdf');
 });
+
 
