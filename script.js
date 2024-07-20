@@ -12,6 +12,10 @@ function showFields() {
     const numPresidents = parseInt(document.getElementById('numPresidents').value, 10);
     const numMembers = parseInt(document.getElementById('numMembers').value, 10);
 
+    // Vérifiez les valeurs pour débogage
+    console.log(`Nombre de présidents: ${numPresidents}`);
+    console.log(`Nombre de membres: ${numMembers}`);
+
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
     presidentFieldsContainer.innerHTML = ''; // Clear existing fields
 
@@ -39,8 +43,8 @@ function showFields() {
     }
 
     // Hide the input fields for number of presidents and members
-    document.getElementById('numPresidents').parentElement.style.display = 'none';
-    document.getElementById('numMembers').parentElement.style.display = 'none';
+    document.getElementById('presidentsGroup').style.display = 'none';
+    document.getElementById('membersGroup').style.display = 'none';
 
     // Show the containers for president and member fields
     presidentFieldsContainer.style.display = 'block';
@@ -62,5 +66,3 @@ document.getElementById('generatePdfButton').addEventListener('click', function(
 
     doc.save('formulaire.pdf');
 });
-
-
