@@ -101,6 +101,16 @@
                 </div>
 
                 <div id="concurrentsFieldsContainer"></div>
+                <!-- Ajoutez ceci dans la section du formulaire où vous voulez que les champs des concurrents apparaissent -->
+                <div class="form-group">
+                    <label for="concurrentsNumber">Nombre de concurrents :</label>
+                        <input type="number" id="concurrentsNumber" name="concurrentsNumber" placeholder="Entrez le nombre de concurrents">
+                        <button type="button" onclick="createConcurrentsFields()">Créer les champs</button>
+                </div>
+
+                <div id="concurrentsFieldsContainer"></div>
+                <div id="concurrentsMessage"></div>
+
 
                 <div class="form-group">
                     <input type="submit" value="Envoyer">
