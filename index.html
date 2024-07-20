@@ -93,12 +93,11 @@
                     <input type="text" id="declarationPublication" name="declarationPublication" placeholder="Journaux ou avis et dates de parution" required>
                 </div>
 
-                <!-- Nouvelle section pour les concurrents -->
+             <!-- Ajoutez ceci dans la section du formulaire où vous voulez que les champs des concurrents apparaissent -->
                 <div class="form-group">
-                    <p>À l'ouverture de la séance, le président dispose sur le bureau tous les plis reçus des concurrents, à savoir :</p>
-                    <label for="concurrentsNumber">Nombre de concurrents :</label>
-                    <input type="number" id="concurrentsNumber" name="concurrentsNumber" min="0">
-                    <button type="button" onclick="createConcurrentsFields()">Valider</button>
+                       <label for="concurrentsNumber">Nombre de concurrents :</label>
+                       <input type="number" id="concurrentsNumber" name="concurrentsNumber" placeholder="Entrez le nombre de concurrents">
+                       <button type="button" onclick="createConcurrentsFields()">Créer les champs</button>
                 </div>
 
                 <div id="concurrentsFieldsContainer"></div>
