@@ -37,6 +37,10 @@ function showFields() {
         `;
         memberFieldsContainer.appendChild(fieldGroup);
     }
+
+    // Hide the input fields for number of presidents and members
+    document.getElementById('numPresidents').parentElement.style.display = 'none';
+    document.getElementById('numMembers').parentElement.style.display = 'none';
 }
 
 document.getElementById('generatePdfButton').addEventListener('click', function() {
