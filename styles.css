@@ -111,6 +111,15 @@ h1, h2 {
     background-color: #004d40;
 }
 
+.inline-group {
+    display: flex;
+    align-items: center;
+}
+
+.inline-group span {
+    margin: 0 5px;
+}
+
 #presidentFieldsContainer, #memberFieldsContainer {
     margin-top: 20px;
 }
