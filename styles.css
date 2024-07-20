@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -112,17 +111,17 @@ h1, h2 {
     background-color: #004d40;
 }
 
-#textAreasContainer {
+#presidentFieldsContainer, #memberFieldsContainer {
     margin-top: 20px;
 }
 
-#textAreasContainer .text-area-group {
+#presidentFieldsContainer .field-group, #memberFieldsContainer .field-group {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
 }
 
-#textAreasContainer textarea {
+#presidentFieldsContainer textarea, #memberFieldsContainer textarea {
     flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
@@ -130,7 +129,7 @@ h1, h2 {
     margin-right: 10px;
 }
 
-#textAreasContainer select {
+#presidentFieldsContainer select, #memberFieldsContainer select {
     margin-left: 10px;
 }
 
