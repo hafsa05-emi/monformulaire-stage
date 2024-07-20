@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         concurrentsMessage.innerHTML = ''; // Réinitialiser le message
 
         if (number === 0) {
-            concurrentsMessage.innerHTML = 'Aucun concurrent à afficher.';
+            concurrentsMessage.innerHTML = 'NEANT';
         } else {
             for (let i = 0; i < number; i++) {
                 concurrentsFieldsContainer.innerHTML += `
