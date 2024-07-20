@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Professionnel</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Mon Site Professionnel</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+            <h2>Formulaire de Contact</h2>
+            <form id="dynamicForm">
+                <div class="form-group">
+                    <label for="organisme">Organisme :</label>
+                    <select id="organisme" name="organisme" onchange="checkOtherOption()">
+                        <option value="ministère">Ministère</option>
+                        <option value="collectivité territoriale">Collectivité territoriale</option>
+                        <option value="établissement public">Établissement public</option>
+                        <option value="personne morale de droit public">Personne morale de droit public</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="otherOrganismeGroup" style="display: none;">
+                    <label for="otherOrganisme">Veuillez préciser :</label>
+                    <input type="text" id="otherOrganisme" name="otherOrganisme">
+                </div>
+
+                <div class="form-group">
+                    <label for="pv">Procès verbal de la séance d'appel d'offres :</label>
+                    <select id="pv" name="pv">
+                        <option value="ouverte">Ouverte</option>
+                        <option value="ouverte simplifiée">Ouverte simplifiée</option>
+                        <option value="restreinte">Restreinte</option>
+                    </select>
+                </div>
+
+                <div class="form-group inline-group">
+                    <span>Le</span>
+                    <input type="date" id="date" name="date" required>
+                    <span>La commission d'appel d'offres composée de :</span>
+                </div>
+
+                <div class="form-group hidden">
+                    <input type="hidden" id="numTextAreas" name="numTextAreas" value="0">
+                    <label for="addTextArea">Ajouter des zones de texte :</label>
+                    <button type="button" onclick="promptForTextAreas()">Ajouter</button>
+                </div>
+
+                <div id="textAreasContainer"></div>
+
+                <div class="form-group">
+                    <label for="presidentsNumber">Nombre de Présidents :</label>
+                    <input type="number" id="presidentsNumber" name="presidentsNumber" min="0">
+                    <button type="button" onclick="createPresidentFields()">Valider</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="membersNumber">Nombre de Membres :</label>
+                    <input type="number" id="membersNumber" name="membersNumber" min="0">
+                    <button type="button" onclick="createMemberFields()">Valider</button>
+                </div>
+
+                <div id="presidentFieldsContainer"></div>
+                <div id="memberFieldsContainer"></div>
+
+                <div class="form-group">
+                    <label for="declaration">Déclaration :</label>
+                    <textarea id="declaration" name="declaration" rows="4" placeholder="S'est réunie en séance publique dans le bureau de... (lieu et adresse) en vue de procéder à l'ouverture des plis concernant l'appel d'offres ouvert ou restreint sur offres de prix ou au rabais ou à majoration n°... (numéro) relatif à... (objet de l'appel d'offres, lieu d'exécution y compris la commune, province ou préfecture et région concernée) conformément à l'avis publié dans... (journaux ou avis et dates de parution)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Envoyer">
+                </div>
+                <div class="form-group">
+                    <button type="button" id="generatePdfButton">Générer PDF</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Mon Site Professionnel. Tous droits réservés.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
