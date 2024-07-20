@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
     const memberFieldsContainer = document.getElementById('memberFieldsContainer');
-    const numTextAreas = document.getElementById('numTextAreas');
     
     // Function to handle other option for organisme
     function checkOtherOption() {
@@ -44,6 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
         document.getElementById('membersNumber').parentElement.style.display = 'none';
+    }
+
+    // Function to generate PDF
+    function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text('Formulaire Professionnel', 10, 10);
+        doc.save('formulaire.pdf');
     }
 
     // Event listeners
