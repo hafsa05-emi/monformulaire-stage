@@ -55,13 +55,18 @@
                     <span>La commission d'appel d'offres composée de :</span>
                 </div>
 
-                <div class="form-group hidden">
-                    <input type="hidden" id="numTextAreas" name="numTextAreas" value="0">
-                    <label for="addTextArea">Ajouter des zones de texte :</label>
-                    <button type="button" onclick="promptForTextAreas()">Ajouter</button>
+                <div class="form-group">
+                    <label for="numPresidents">Nombre de présidents :</label>
+                    <input type="number" id="numPresidents" name="numPresidents" min="0" onchange="updateFields('president')">
                 </div>
 
-                <div id="textAreasContainer"></div>
+                <div class="form-group">
+                    <label for="numMembers">Nombre de membres :</label>
+                    <input type="number" id="numMembers" name="numMembers" min="0" onchange="updateFields('membre')">
+                </div>
+
+                <div id="presidentFieldsContainer"></div>
+                <div id="memberFieldsContainer"></div>
 
                 <div class="form-group">
                     <input type="submit" value="Envoyer">
