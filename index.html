@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -26,7 +25,7 @@
             <form id="dynamicForm">
                 <div class="form-group">
                     <label for="organisme">Organisme :</label>
-                    <select id="organisme" name="organisme" onchange="checkOtherOption()">
+                    <select id="organisme" name="organisme">
                         <option value="ministère">Ministère</option>
                         <option value="collectivité territoriale">Collectivité territoriale</option>
                         <option value="établissement public">Établissement public</option>
@@ -49,37 +48,32 @@
                     </select>
                 </div>
 
-                <div class="form-group inline-group">
-                    <span>Le</span>
+                <div class="form-group">
+                    <label for="date">Le :</label>
                     <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
                     <span>La commission d'appel d'offres composée de :</span>
                 </div>
-
-                <div class="form-group hidden">
-                    <input type="hidden" id="numTextAreas" name="numTextAreas" value="0">
-                    <label for="addTextArea">Ajouter des zones de texte :</label>
-                    <button type="button" onclick="promptForTextAreas()">Ajouter</button>
-                </div>
-
-                <div id="textAreasContainer"></div>
 
                 <div class="form-group">
                     <label for="presidentsNumber">Nombre de Présidents :</label>
                     <input type="number" id="presidentsNumber" name="presidentsNumber" min="0">
-                    <button type="button" onclick="createPresidentFields()">Valider</button>
+                    <button type="button" id="createPresidentFieldsButton">Valider</button>
                 </div>
 
                 <div class="form-group">
                     <label for="membersNumber">Nombre de Membres :</label>
                     <input type="number" id="membersNumber" name="membersNumber" min="0">
-                    <button type="button" onclick="createMemberFields()">Valider</button>
+                    <button type="button" id="createMemberFieldsButton">Valider</button>
                 </div>
 
                 <div id="presidentFieldsContainer"></div>
                 <div id="memberFieldsContainer"></div>
 
                 <div class="form-group">
-                    <label for="declaration">Déclaration :</label>
+                    <label for="declarationPlace">Déclaration :</label>
                     <p>S'est réunie en séance publique dans le bureau de...</p>
                     <input type="text" id="declarationPlace" name="declarationPlace" placeholder="Lieu et adresse" required>
                     
@@ -87,20 +81,25 @@
                     <input type="text" id="declarationNumber" name="declarationNumber" placeholder="Numéro" required>
                     
                     <p>relatif à...</p>
-                    <input type="text" id="declarationObject" name="declarationObject" placeholder="Objet de l'appel d'offres, lieu d'exécution, etc." required>
+                    <input type="text" id="declarationObject" name="declarationObject" placeholder="Objet de l'appel d'offres, y compris lieu d'exécution, commune, province, etc." required>
                     
                     <p>conformément à l'avis publié dans...</p>
                     <input type="text" id="declarationPublication" name="declarationPublication" placeholder="Journaux ou avis et dates de parution" required>
                 </div>
 
-             <!-- Ajoutez ceci dans la section du formulaire où vous voulez que les champs des concurrents apparaissent -->
                 <div class="form-group">
-                    <label for="concurrentNumber">Nombre de concurrents :</label>
-                    <input type="number" id="presidentsNumber" name="concurrentNumber" min="0">
-                    <button type="button" onclick="createConcurrentFields()">Valider</button>
+                    <label for="concurrentsNumber">Nombre de concurrents :</label>
+                    <input type="number" id="concurrentsNumber" name="concurrentsNumber" placeholder="Entrez le nombre de concurrents">
+                    <button type="button" id="createConcurrentsFieldsButton">Créer les champs</button>
                 </div>
-
                 <div id="concurrentsFieldsContainer"></div>
+
+                <div class="form-group">
+                    <label for="reponsesNumber">Nombre de concurrents présents ayant répondu :</label>
+                    <input type="number" id="reponsesNumber" name="reponsesNumber" placeholder="Entrez le nombre de concurrents ayant répondu">
+                    <button type="button" id="createReponsesFieldsButton">Créer les champs</button>
+                </div>
+                <div id="reponsesFieldsContainer"></div>
 
                 <div class="form-group">
                     <input type="submit" value="Envoyer">
@@ -113,3 +112,7 @@
     </main>
     <footer>
         <p>&copy; 2024 Mon Site Professionnel. Tous droits réservés.</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
