@@ -32,4 +32,10 @@ document.getElementById('generatePdfButton').addEventListener('click', async () 
     doc.text('Formulaire de Contact', 10, 10);
     let y = 20;
 
-    for (let [key, value]
+    for (let [key, value] of formData.entries()) {
+        doc.text(`${key}: ${value}`, 10, y);
+        y += 10;
+    }
+
+    doc.save('formulaire.pdf');
+});
