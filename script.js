@@ -8,23 +8,18 @@ function checkOtherOption() {
     }
 }
 
-function promptForTextAreas() {
-    const numTextAreas = prompt("Combien de zones de texte souhaitez-vous ajouter ?");
-    const numTextAreasInput = document.getElementById('numTextAreas');
-    const textAreasContainer = document.getElementById('textAreasContainer');
-    numTextAreasInput.value = numTextAreas;
-    textAreasContainer.innerHTML = ''; // Clear existing text areas
-    for (let i = 0; i < numTextAreas; i++) {
-        const textAreaGroup = document.createElement('div');
-        textAreaGroup.className = 'text-area-group';
-        textAreaGroup.innerHTML = `
-            <textarea name="textArea${i + 1}" rows="4" placeholder="Zone de texte ${i + 1}"></textarea>
-            <select name="role${i + 1}">
-                <option value="membre">Membre</option>
-                <option value="président">Président</option>
-            </select>
+function updateFields(role) {
+    const numFields = document.getElementById(`num${role.charAt(0).toUpperCase() + role.slice(1)}s`).value;
+    const fieldsContainer = document.getElementById(`${role}FieldsContainer`);
+    fieldsContainer.innerHTML = ''; // Clear existing fields
+
+    for (let i = 0; i < numFields; i++) {
+        const fieldGroup = document.createElement('div');
+        fieldGroup.className = 'field-group';
+        fieldGroup.innerHTML = `
+            <textarea name="${role}TextArea${i + 1}" rows="2" placeholder="Zone de texte ${role} ${i + 1}"></textarea>
         `;
-        textAreasContainer.appendChild(textAreaGroup);
+        fieldsContainer.appendChild(fieldGroup);
     }
 }
 
@@ -35,4 +30,6 @@ document.getElementById('generatePdfButton').addEventListener('click', async () 
     const formData = new FormData(form);
 
     doc.text('Formulaire de Contact', 10, 10);
-    let y = 20
+    let y = 20;
+
+    for (let [key, value]
