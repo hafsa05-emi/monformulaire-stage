@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -56,14 +55,18 @@
                     <span>La commission d'appel d'offres composée de :</span>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group hidden">
                     <label for="numPresidents">Nombre de présidents :</label>
-                    <input type="number" id="numPresidents" name="numPresidents" min="0" onchange="updateFields('president')">
+                    <input type="number" id="numPresidents" name="numPresidents" min="0">
+                </div>
+
+                <div class="form-group hidden">
+                    <label for="numMembers">Nombre de membres :</label>
+                    <input type="number" id="numMembers" name="numMembers" min="0">
                 </div>
 
                 <div class="form-group">
-                    <label for="numMembers">Nombre de membres :</label>
-                    <input type="number" id="numMembers" name="numMembers" min="0" onchange="updateFields('membre')">
+                    <button type="button" onclick="showFields()">Valider</button>
                 </div>
 
                 <div id="presidentFieldsContainer"></div>
