@@ -1,8 +1,7 @@
-
 function checkOtherOption() {
-    const organismeSelect = document.getElementById('organisme');
+    const organisme = document.getElementById('organisme').value;
     const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
-    if (organismeSelect.value === 'autre') {
+    if (organisme === 'autre') {
         otherOrganismeGroup.style.display = 'block';
     } else {
         otherOrganismeGroup.style.display = 'none';
@@ -15,36 +14,33 @@ function showFields() {
 
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
     const memberFieldsContainer = document.getElementById('memberFieldsContainer');
-    const numFieldsGroup = document.getElementById('numFieldsGroup');
-
-    // Clear existing fields
+    
+    // Clear previous fields
     presidentFieldsContainer.innerHTML = '';
     memberFieldsContainer.innerHTML = '';
 
-    // Generate fields for presidents
-    for (let i = 0; i < numPresidents; i++) {
-        const fieldGroup = document.createElement('div');
-        fieldGroup.className = 'form-group';
-        fieldGroup.innerHTML = `
-            <label for="president${i + 1}">Président ${i + 1} :</label>
-            <input type="text" id="president${i + 1}" name="president${i + 1}" placeholder="Nom du président ${i + 1}">
-        `;
-        presidentFieldsContainer.appendChild(fieldGroup);
+    // Create president fields
+    for (let i = 1; i <= numPresidents; i++) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'president' + i;
+        input.placeholder = 'Nom du Président ' + i;
+        presidentFieldsContainer.appendChild(input);
+        presidentFieldsContainer.appendChild(document.createElement('br'));
     }
 
-    // Generate fields for members
-    for (let i = 0; i < numMembers; i++) {
-        const fieldGroup = document.createElement('div');
-        fieldGroup.className = 'form-group';
-        fieldGroup.innerHTML = `
-            <label for="member${i + 1}">Membre ${i + 1} :</label>
-            <input type="text" id="member${i + 1}" name="member${i + 1}" placeholder="Nom du membre ${i + 1}">
-        `;
-        memberFieldsContainer.appendChild(fieldGroup);
+    // Create member fields
+    for (let i = 1; i <= numMembers; i++) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'member' + i;
+        input.placeholder = 'Nom du Membre ' + i;
+        memberFieldsContainer.appendChild(input);
+        memberFieldsContainer.appendChild(document.createElement('br'));
     }
 
-    // Hide the input fields for number of presidents and members
-    numFieldsGroup.style.display = 'none';
+    // Hide the number fields after displaying the name fields
+    document.getElementById('numFieldsGroup').style.display = 'none';
 }
 
 document.getElementById('generatePdfButton').addEventListener('click', function() {
