@@ -1,11 +1,9 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const organismeSelect = document.getElementById('organisme');
     const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
     const memberFieldsContainer = document.getElementById('memberFieldsContainer');
     const concurrentsFieldsContainer = document.getElementById('concurrentsFieldsContainer');
-    const neantMessage = document.getElementById('neantMessage');
 
     // Fonction pour gérer l'option autre pour organisme
     function checkOtherOption() {
@@ -52,19 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function createConcurrentsFields() {
         const number = document.getElementById('concurrentsNumber').value;
         concurrentsFieldsContainer.innerHTML = '';
-        neantMessage.style.display = 'none';
 
-        if (number > 0) {
-            for (let i = 0; i < number; i++) {
-                concurrentsFieldsContainer.innerHTML += `
-                    <div class="form-group">
-                        <label for="concurrent${i}">Concurrent ${i + 1} :</label>
-                        <input type="text" id="concurrent${i}" name="concurrent${i}" placeholder="Nom du concurrent">
-                    </div>
-                `;
-            }
-        } else {
-            neantMessage.style.display = 'block';
+        for (let i = 0; i < number; i++) {
+            concurrentsFieldsContainer.innerHTML += `
+                <div class="form-group">
+                    <label for="concurrent${i}">Concurrent ${i + 1} :</label>
+                    <input type="text" id="concurrent${i}" name="concurrent${i}" placeholder="Nom du concurrent">
+                </div>
+            `;
         }
         document.getElementById('concurrentsNumber').parentElement.style.display = 'none';
     }
@@ -106,4 +99,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Écouteurs d'événements
     document.getElementById('organisme').addEventListener('change', checkOtherOption);
-});
