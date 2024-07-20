@@ -1,3 +1,4 @@
+
 function checkOtherOption() {
     const organismeSelect = document.getElementById('organisme');
     const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
@@ -12,12 +13,15 @@ function showFields() {
     const numPresidents = parseInt(document.getElementById('numPresidents').value, 10);
     const numMembers = parseInt(document.getElementById('numMembers').value, 10);
 
-    console.log(`Nombre de présidents: ${numPresidents}`);
-    console.log(`Nombre de membres: ${numMembers}`);
-
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
-    presidentFieldsContainer.innerHTML = ''; // Clear existing fields
+    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
+    const numFieldsGroup = document.getElementById('numFieldsGroup');
 
+    // Clear existing fields
+    presidentFieldsContainer.innerHTML = '';
+    memberFieldsContainer.innerHTML = '';
+
+    // Generate fields for presidents
     for (let i = 0; i < numPresidents; i++) {
         const fieldGroup = document.createElement('div');
         fieldGroup.className = 'form-group';
@@ -28,9 +32,7 @@ function showFields() {
         presidentFieldsContainer.appendChild(fieldGroup);
     }
 
-    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
-    memberFieldsContainer.innerHTML = ''; // Clear existing fields
-
+    // Generate fields for members
     for (let i = 0; i < numMembers; i++) {
         const fieldGroup = document.createElement('div');
         fieldGroup.className = 'form-group';
@@ -42,12 +44,7 @@ function showFields() {
     }
 
     // Hide the input fields for number of presidents and members
-    document.getElementById('presidentsGroup').style.display = 'none';
-    document.getElementById('membersGroup').style.display = 'none';
-
-    // Show the containers for president and member fields
-    presidentFieldsContainer.style.display = 'block';
-    memberFieldsContainer.style.display = 'block';
+    numFieldsGroup.style.display = 'none';
 }
 
 document.getElementById('generatePdfButton').addEventListener('click', function() {
@@ -65,4 +62,3 @@ document.getElementById('generatePdfButton').addEventListener('click', function(
 
     doc.save('formulaire.pdf');
 });
-
