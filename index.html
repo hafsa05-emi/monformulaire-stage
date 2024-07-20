@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -93,23 +92,15 @@
                     <input type="text" id="declarationPublication" name="declarationPublication" placeholder="Journaux ou avis et dates de parution" required>
                 </div>
 
-             <!-- Ajoutez ceci dans la section du formulaire où vous voulez que les champs des concurrents apparaissent -->
+                <!-- Ajoutez ceci dans la section du formulaire où vous voulez que les champs des concurrents apparaissent -->
                 <div class="form-group">
-                       <label for="concurrentsNumber">Nombre de concurrents :</label>
-                       <input type="number" id="concurrentsNumber" name="concurrentsNumber" placeholder="Entrez le nombre de concurrents">
-                       <button type="button" onclick="createConcurrentsFields()">Créer les champs</button>
+                    <label for="concurrentsNumber">Nombre de concurrents :</label>
+                    <input type="number" id="concurrentsNumber" name="concurrentsNumber" placeholder="Entrez le nombre de concurrents">
+                    <button type="button" onclick="createConcurrentsFields()">Créer les champs</button>
                 </div>
 
-             <!-- Ajoutez ceci dans la section du formulaire où vous voulez que les champs des concurrents apparaissent -->
-               <div class="form-group">
-                <label for="concurrentsNumber">Nombre de concurrents :</label>
-                <input type="number" id="concurrentsNumber" name="concurrentsNumber" placeholder="Entrez le nombre de concurrents">
-                <button type="button" onclick="createConcurrentsFields()">Créer les champs</button>
-                </div>
-
-              <div id="concurrentsFieldsContainer"></div>
-              <div id="concurrentsMessage"></div>
-
+                <div id="concurrentsFieldsContainer"></div>
+                <div id="neantMessage" style="display: none;">NEANT</div>
 
                 <div class="form-group">
                     <input type="submit" value="Envoyer">
@@ -123,6 +114,7 @@
     <footer>
         <p>&copy; 2024 Mon Site Professionnel. Tous droits réservés.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
