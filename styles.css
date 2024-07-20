@@ -1,114 +1,59 @@
+
+/* Ajoutez ces styles à votre fichier CSS existant */
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
 
 header {
-    background-color: #004b49;
-    color: #fff;
-    padding: 20px;
+    background-color: #004d99;
+    color: white;
+    padding: 10px;
     text-align: center;
-    position: relative;
 }
 
-header #logo {
-    max-width: 120px; /* Ajustez la taille du logo ici */
+#logo {
+    max-width: 150px;
     height: auto;
-    position: absolute;
-    left: 20px;
-    top: 20px;
-}
-
-header h1 {
-    margin: 0;
-    padding-top: 10px;
-}
-
-nav {
-    background-color: #00796b;
 }
 
 nav ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
+    background-color: #333;
 }
 
 nav ul li {
-    margin: 0 15px;
+    display: inline;
+    margin-right: 10px;
 }
 
 nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
-    padding: 15px 20px;
-    display: block;
+    padding: 10px;
+    display: inline-block;
 }
 
 nav ul li a:hover {
-    background-color: #004d40;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 160px);
-    padding: 20px;
+    background-color: #575757;
 }
 
 .container {
-    background: #fff;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 800px;
-    width: 100%;
-    margin: 20px;
-}
-
-h1, h2 {
-    color: #004b49;
 }
 
 .form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #00796b;
-}
-
-.form-group input, .form-group button, .form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-group input[type="date"] {
-    width: auto;
-}
-
-.form-group button {
-    background-color: #00796b;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-.form-group button:hover {
-    background-color: #004d40;
+    margin-bottom: 15px;
 }
 
 .inline-group {
@@ -120,18 +65,45 @@ h1, h2 {
     margin-right: 10px;
 }
 
-#presidentFieldsContainer, #memberFieldsContainer {
-    margin-top: 20px;
-    display: none; /* Hide by default */
+#lieu, #numero, #objet, #avis {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    color: white;
+    background-color: #004d99;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003366;
+}
+
+input[type="submit"] {
+    background-color: #28a745;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+input[type="number"] {
+    width: 80px;
 }
 
 footer {
-    background-color: #004b49;
-    color: #fff;
+    background-color: #004d99;
+    color: white;
     text-align: center;
     padding: 10px;
-    position: relative;
-    bottom: 0;
+    position: fixed;
     width: 100%;
+    bottom: 0;
 }
-
