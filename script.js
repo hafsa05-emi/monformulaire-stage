@@ -12,7 +12,6 @@ function showFields() {
     const numPresidents = parseInt(document.getElementById('numPresidents').value, 10);
     const numMembers = parseInt(document.getElementById('numMembers').value, 10);
 
-    // Vérifiez les valeurs pour débogage
     console.log(`Nombre de présidents: ${numPresidents}`);
     console.log(`Nombre de membres: ${numMembers}`);
 
@@ -66,3 +65,4 @@ document.getElementById('generatePdfButton').addEventListener('click', function(
 
     doc.save('formulaire.pdf');
 });
+
