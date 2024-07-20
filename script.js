@@ -1,63 +1,54 @@
-function checkOtherOption() {
-    const organisme = document.getElementById('organisme').value;
+document.addEventListener('DOMContentLoaded', () => {
+    const organismeSelect = document.getElementById('organisme');
     const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
-    if (organisme === 'autre') {
-        otherOrganismeGroup.style.display = 'block';
-    } else {
-        otherOrganismeGroup.style.display = 'none';
-    }
-}
-
-function showFields() {
-    const numPresidents = parseInt(document.getElementById('numPresidents').value, 10);
-    const numMembers = parseInt(document.getElementById('numMembers').value, 10);
-
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
     const memberFieldsContainer = document.getElementById('memberFieldsContainer');
+    const numTextAreas = document.getElementById('numTextAreas');
     
-    // Clear previous fields
-    presidentFieldsContainer.innerHTML = '';
-    memberFieldsContainer.innerHTML = '';
-
-    // Create president fields
-    for (let i = 1; i <= numPresidents; i++) {
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = 'president' + i;
-        input.placeholder = 'Nom du Président ' + i;
-        presidentFieldsContainer.appendChild(input);
-        presidentFieldsContainer.appendChild(document.createElement('br'));
-    }
-
-    // Create member fields
-    for (let i = 1; i <= numMembers; i++) {
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = 'member' + i;
-        input.placeholder = 'Nom du Membre ' + i;
-        memberFieldsContainer.appendChild(input);
-        memberFieldsContainer.appendChild(document.createElement('br'));
-    }
-
-    // Hide the number fields after displaying the name fields
-    document.getElementById('numFieldsGroup').style.display = 'none';
-    document.getElementById('numFieldsGroup2').style.display = 'none';
-}
-
-document.getElementById('generatePdfButton').addEventListener('click', function() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    doc.text("Formulaire de Contact", 10, 10);
-
-    const formData = new FormData(document.getElementById('dynamicForm'));
-    let yPosition = 20;
-    for (const [key, value] of formData.entries()) {
-        if (value) {
-            doc.text(`${key}: ${value}`, 10, yPosition);
-            yPosition += 10;
+    // Function to handle other option for organisme
+    function checkOtherOption() {
+        if (organismeSelect.value === 'autre') {
+            otherOrganismeGroup.style.display = 'block';
+        } else {
+            otherOrganismeGroup.style.display = 'none';
         }
     }
 
-    doc.save('formulaire.pdf');
+    // Function to create president fields
+    function createPresidentFields() {
+        const number = document.getElementById('presidentsNumber').value;
+        presidentFieldsContainer.innerHTML = '';
+
+        for (let i = 0; i < number; i++) {
+            presidentFieldsContainer.innerHTML += `
+                <div class="form-group">
+                    <label for="president${i}">Président ${i + 1} :</label>
+                    <input type="text" id="president${i}" name="president${i}" placeholder="Nom du président">
+                </div>
+            `;
+        }
+        document.getElementById('presidentsNumber').parentElement.style.display = 'none';
+    }
+
+    // Function to create member fields
+    function createMemberFields() {
+        const number = document.getElementById('membersNumber').value;
+        memberFieldsContainer.innerHTML = '';
+
+        for (let i = 0; i < number; i++) {
+            memberFieldsContainer.innerHTML += `
+                <div class="form-group">
+                    <label for="member${i}">Membre ${i + 1} :</label>
+                    <input type="text" id="member${i}" name="member${i}" placeholder="Nom du membre">
+                </div>
+            `;
+        }
+        document.getElementById('membersNumber').parentElement.style.display = 'none';
+    }
+
+    // Event listeners
+    document.getElementById('generatePdfButton').addEventListener('click', generatePDF);
+    window.checkOtherOption = checkOtherOption;
+    window.createPresidentFields = createPresidentFields;
+    window.createMemberFields = createMemberFields;
 });
