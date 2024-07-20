@@ -9,8 +9,8 @@ function checkOtherOption() {
 }
 
 function showFields() {
-    const numPresidents = document.getElementById('numPresidents').value;
-    const numMembers = document.getElementById('numMembers').value;
+    const numPresidents = parseInt(document.getElementById('numPresidents').value, 10);
+    const numMembers = parseInt(document.getElementById('numMembers').value, 10);
 
     const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
     presidentFieldsContainer.innerHTML = ''; // Clear existing fields
