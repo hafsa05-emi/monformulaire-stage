@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const organismeSelect = document.getElementById('organisme');
     const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
@@ -7,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const concurrentsFieldsContainer = document.getElementById('concurrentsFieldsContainer');
     const concurrentsMessage = document.getElementById('concurrentsMessage');
 
-    // Fonction pour gérer l'option autre pour organisme
+    // Function to handle other option for organisme
     function checkOtherOption() {
         if (organismeSelect.value === 'autre') {
             otherOrganismeGroup.style.display = 'block';
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Fonction pour créer les champs des présidents
+    // Function to create president fields
     function createPresidentFields() {
         const number = document.getElementById('presidentsNumber').value;
         presidentFieldsContainer.innerHTML = '';
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('presidentsNumber').parentElement.style.display = 'none';
     }
 
-    // Fonction pour créer les champs des membres
+    // Function to create member fields
     function createMemberFields() {
         const number = document.getElementById('membersNumber').value;
         memberFieldsContainer.innerHTML = '';
@@ -48,11 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('membersNumber').parentElement.style.display = 'none';
     }
 
-    // Fonction pour créer les champs des concurrents
+    // Function to create concurrents fields
     function createConcurrentsFields() {
         const number = parseInt(document.getElementById('concurrentsNumber').value, 10);
-        concurrentsFieldsContainer.innerHTML = '';
-        concurrentsMessage.innerHTML = ''; // Réinitialiser le message
+        concurrentsFieldsContainer.innerHTML = '';  // Réinitialiser les champs existants
+        concurrentsMessage.innerHTML = '';  // Réinitialiser le message
 
         if (number === 0) {
             concurrentsMessage.innerHTML = 'NEANT';
@@ -65,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
             }
-            document.getElementById('concurrentsNumber').parentElement.style.display = 'none';
+            document.getElementById('concurrentsNumber').parentElement.style.display = 'none';  // Masquer le champ de saisie
         }
     }
 
-    // Fonction pour générer le PDF
+    // Function to generate PDF
     function generatePDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
@@ -104,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         doc.save('formulaire.pdf');
     }
 
-    // Écouteurs d'événements
+    // Event listeners
     document.getElementById('organisme').addEventListener('change', checkOtherOption);
     document.getElementById('generatePdfButton').addEventListener('click', generatePDF);
     document.querySelector('button[onclick="createPresidentFields()"]').addEventListener('click', createPresidentFields);
