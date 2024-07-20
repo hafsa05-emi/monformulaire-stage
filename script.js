@@ -1,12 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const organismeSelect = document.getElementById('organisme');
-    const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
-    const presidentFieldsContainer = document.getElementById('presidentFieldsContainer');
-    const memberFieldsContainer = document.getElementById('memberFieldsContainer');
-    const concurrentsFieldsContainer = document.getElementById('concurrentsFieldsContainer');
-
-    // Fonction pour gérer l'option autre pour organisme
+document.addEventListener('DOMContentLoaded', function() {
+    // Fonction pour vérifier si "Autre" est sélectionné dans le menu déroulant "Organisme"
     function checkOtherOption() {
+        const organismeSelect = document.getElementById('organisme');
+        const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
         if (organismeSelect.value === 'autre') {
             otherOrganismeGroup.style.display = 'block';
         } else {
@@ -14,88 +10,90 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Fonction pour créer les champs des présidents
+    // Fonction pour créer dynamiquement des zones de texte
+    function promptForTextAreas() {
+        const numTextAreas = prompt("Combien de zones de texte voulez-vous ajouter ?");
+        if (numTextAreas && !isNaN(numTextAreas) && numTextAreas > 0) {
+            const container = document.getElementById('textAreasContainer');
+            container.innerHTML = ''; // Réinitialiser le contenu précédent
+
+            for (let i = 0; i < numTextAreas; i++) {
+                const textArea = document.createElement('textarea');
+                textArea.rows = 4;
+                textArea.cols = 50;
+                textArea.placeholder = `Zone de texte ${i + 1}`;
+                container.appendChild(textArea);
+                container.appendChild(document.createElement('br'));
+            }
+        }
+    }
+
+    // Fonction pour créer des champs pour les présidents
     function createPresidentFields() {
         const number = document.getElementById('presidentsNumber').value;
-        presidentFieldsContainer.innerHTML = '';
+        const container = document.getElementById('presidentFieldsContainer');
+        container.innerHTML = '';
 
         for (let i = 0; i < number; i++) {
-            presidentFieldsContainer.innerHTML += `
-                <div class="form-group">
-                    <label for="president${i}">Président ${i + 1} :</label>
-                    <input type="text" id="president${i}" name="president${i}" placeholder="Nom du président">
-                </div>
-            `;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = `Président ${i + 1}`;
+            container.appendChild(input);
+            container.appendChild(document.createElement('br'));
         }
-        document.getElementById('presidentsNumber').parentElement.style.display = 'none';
     }
 
-    // Fonction pour créer les champs des membres
+    // Fonction pour créer des champs pour les membres
     function createMemberFields() {
         const number = document.getElementById('membersNumber').value;
-        memberFieldsContainer.innerHTML = '';
+        const container = document.getElementById('memberFieldsContainer');
+        container.innerHTML = '';
 
         for (let i = 0; i < number; i++) {
-            memberFieldsContainer.innerHTML += `
-                <div class="form-group">
-                    <label for="member${i}">Membre ${i + 1} :</label>
-                    <input type="text" id="member${i}" name="member${i}" placeholder="Nom du membre">
-                </div>
-            `;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = `Membre ${i + 1}`;
+            container.appendChild(input);
+            container.appendChild(document.createElement('br'));
         }
-        document.getElementById('membersNumber').parentElement.style.display = 'none';
     }
 
-    // Fonction pour créer les champs des concurrents
-    function createConcurrentsFields() {
-        const number = document.getElementById('concurrentsNumber').value;
-        concurrentsFieldsContainer.innerHTML = '';
+    // Fonction pour créer des champs pour les concurrents
+    function createConcurrentFields() {
+        const number = document.getElementById('concurrentNumber').value;
+        const container = document.getElementById('concurrentsFieldsContainer');
+        const neantMessage = document.getElementById('neantMessage');
 
-        for (let i = 0; i < number; i++) {
-            concurrentsFieldsContainer.innerHTML += `
-                <div class="form-group">
-                    <label for="concurrent${i}">Concurrent ${i + 1} :</label>
-                    <input type="text" id="concurrent${i}" name="concurrent${i}" placeholder="Nom du concurrent">
-                </div>
-            `;
+        container.innerHTML = '';
+        neantMessage.style.display = 'none';
+
+        if (number === '0') {
+            neantMessage.style.display = 'block';
+        } else if (number > 0) {
+            for (let i = 0; i < number; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `Concurrent ${i + 1}`;
+                container.appendChild(input);
+                container.appendChild(document.createElement('br'));
+            }
         }
-        document.getElementById('concurrentsNumber').parentElement.style.display = 'none';
     }
 
-    // Fonction pour générer le PDF
-    function generatePDF() {
+    // Ajout des événements aux boutons pour générer des champs
+    document.querySelector('[onclick="promptForTextAreas()"]').addEventListener('click', promptForTextAreas);
+    document.querySelector('[onclick="createPresidentFields()"]').addEventListener('click', createPresidentFields);
+    document.querySelector('[onclick="createMemberFields()"]').addEventListener('click', createMemberFields);
+    document.querySelector('[onclick="createConcurrentFields()"]').addEventListener('click', createConcurrentFields);
+
+    // Gestion du bouton de génération de PDF (exemple basique)
+    document.getElementById('generatePdfButton').addEventListener('click', function() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
+        doc.text("Contenu du formulaire ici", 10, 10);
+        doc.save("formulaire.pdf");
+    });
 
-        doc.text('Formulaire Professionnel', 10, 10);
-        doc.text('Organisme : ' + document.getElementById('organisme').value, 10, 20);
-        doc.text('Procès verbal : ' + document.getElementById('pv').value, 10, 30);
-        doc.text('Date : ' + document.getElementById('date').value, 10, 40);
-
-        doc.text('Déclaration :', 10, 50);
-        doc.text('Lieu et adresse : ' + document.getElementById('declarationPlace').value, 10, 60);
-        doc.text('Numéro : ' + document.getElementById('declarationNumber').value, 10, 70);
-        doc.text('Objet de l\'appel d\'offres : ' + document.getElementById('declarationObject').value, 10, 80);
-        doc.text('Journaux ou avis et dates de parution : ' + document.getElementById('declarationPublication').value, 10, 90);
-
-        let yPosition = 100;
-        document.querySelectorAll('[id^="president"]').forEach((input) => {
-            doc.text('Président : ' + input.value, 10, yPosition);
-            yPosition += 10;
-        });
-
-        document.querySelectorAll('[id^="member"]').forEach((input) => {
-            doc.text('Membre : ' + input.value, 10, yPosition);
-            yPosition += 10;
-        });
-
-        document.querySelectorAll('[id^="concurrent"]').forEach((input) => {
-            doc.text('Concurrent : ' + input.value, 10, yPosition);
-            yPosition += 10;
-        });
-
-        doc.save('formulaire.pdf');
-    }
-
-    // Écouteurs d'événements
+    // Événement pour la sélection du menu déroulant "Organisme"
     document.getElementById('organisme').addEventListener('change', checkOtherOption);
+});
