@@ -52,8 +52,10 @@ document.getElementById('generatePdfButton').addEventListener('click', function(
     const formData = new FormData(document.getElementById('dynamicForm'));
     let yPosition = 20;
     for (const [key, value] of formData.entries()) {
-        doc.text(`${key}: ${value}`, 10, yPosition);
-        yPosition += 10;
+        if (value) {
+            doc.text(`${key}: ${value}`, 10, yPosition);
+            yPosition += 10;
+        }
     }
 
     doc.save('formulaire.pdf');
