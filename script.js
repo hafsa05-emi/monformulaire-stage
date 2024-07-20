@@ -1,24 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('organisme').addEventListener('change', checkOtherOption);
     document.getElementById('createConcurrentsFieldsButton').addEventListener('click', createConcurrentsFields);
     document.getElementById('createReponsesFieldsButton').addEventListener('click', createReponsesFields);
     document.getElementById('createPresidentFieldsButton').addEventListener('click', createPresidentFields);
     document.getElementById('createMemberFieldsButton').addEventListener('click', createMemberFields);
-    document.getElementById('generatePdfButton').addEventListener('click', generatePdf);
-
-    function checkOtherOption() {
-        const organismeSelect = document.getElementById('organisme');
-        const otherOrganismeGroup = document.getElementById('otherOrganismeGroup');
-        if (organismeSelect.value === 'autre') {
-            otherOrganismeGroup.style.display = 'block';
-        } else {
-            otherOrganismeGroup.style.display = 'none';
-        }
-    }
 
     function createConcurrentsFields() {
         const container = document.getElementById('concurrentsFieldsContainer');
-        container.innerHTML = ''; // Efface le contenu précédent
+        container.innerHTML = ''; // Clear previous content
         const number = parseInt(document.getElementById('concurrentsNumber').value, 10);
         
         if (number > 0) {
@@ -30,12 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.className = 'form-group';
                 container.appendChild(input);
             }
-        } // Pas de `else` pour ne rien afficher lorsque le nombre est 0
+        } else {
+            container.innerHTML = ''; // Clear content if 0
+        }
     }
 
     function createReponsesFields() {
         const container = document.getElementById('reponsesFieldsContainer');
-        container.innerHTML = ''; // Efface le contenu précédent
+        container.innerHTML = ''; // Clear previous content
         const number = parseInt(document.getElementById('reponsesNumber').value, 10);
 
         if (number > 0) {
@@ -47,14 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.className = 'form-group';
                 container.appendChild(input);
             }
-        } else if (number === 0) {
-            container.innerHTML = 'NEANT';
+        } else {
+            container.innerHTML = 'NEANT'; // Show NEANT if 0
         }
     }
 
     function createPresidentFields() {
         const container = document.getElementById('presidentFieldsContainer');
-        container.innerHTML = ''; // Efface le contenu précédent
+        container.innerHTML = ''; // Clear previous content
         const number = parseInt(document.getElementById('presidentsNumber').value, 10);
 
         if (number > 0) {
@@ -66,12 +56,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.className = 'form-group';
                 container.appendChild(input);
             }
-        } // Pas de `else` pour ne rien afficher lorsque le nombre est 0
+        } else {
+            container.innerHTML = ''; // Clear content if 0
+        }
     }
 
     function createMemberFields() {
         const container = document.getElementById('memberFieldsContainer');
-        container.innerHTML = ''; // Efface le contenu précédent
+        container.innerHTML = ''; // Clear previous content
         const number = parseInt(document.getElementById('membersNumber').value, 10);
 
         if (number > 0) {
@@ -83,11 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.className = 'form-group';
                 container.appendChild(input);
             }
-        } // Pas de `else` pour ne rien afficher lorsque le nombre est 0
-    }
-
-    function generatePdf() {
-        // Votre logique pour générer le PDF
+        } else {
+            container.innerHTML = ''; // Clear content if 0
+        }
     }
 });
-
