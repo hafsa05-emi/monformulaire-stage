@@ -552,3 +552,125 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+// Nouvelle fonctionnalité pour les offres financières écartées
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('createFinancialExclusionFieldsButton').addEventListener('click', function () {
+        const container = document.getElementById('financialExclusionFieldsContainer');
+        const number = parseInt(document.getElementById('financialExclusionNumber').value, 10);
+        
+        container.innerHTML = ''; // Efface le contenu précédent
+        
+        if (number > 0) {
+            // Crée un tableau pour afficher les concurrents et les montants des actes d'engagement
+            const table = document.createElement('table');
+            table.className = 'form-group';
+            
+            // Crée l'en-tête du tableau
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            const competitorHeader = document.createElement('th');
+            competitorHeader.textContent = 'Nom du Concurrent';
+            const engagementAmountHeader = document.createElement('th');
+            engagementAmountHeader.textContent = 'Montant des Actes d\'Engagement';
+            headerRow.appendChild(competitorHeader);
+            headerRow.appendChild(engagementAmountHeader);
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+            
+            // Crée le corps du tableau
+            const tbody = document.createElement('tbody');
+            for (let i = 1; i <= number; i++) {
+                const row = document.createElement('tr');
+                
+                // Colonne pour le nom du concurrent
+                const competitorCell = document.createElement('td');
+                const competitorInput = document.createElement('input');
+                competitorInput.type = 'text';
+                competitorInput.name = `excludedCompetitorName${i}`;
+                competitorInput.placeholder = `Nom du concurrent ${i}`;
+                competitorCell.appendChild(competitorInput);
+                row.appendChild(competitorCell);
+                
+                // Colonne pour le montant des actes d'engagement
+                const engagementAmountCell = document.createElement('td');
+                const engagementAmountInput = document.createElement('input');
+                engagementAmountInput.type = 'text';
+                engagementAmountInput.name = `engagementAmount${i}`;
+                engagementAmountInput.placeholder = `Montant des actes d'engagement ${i}`;
+                engagementAmountCell.appendChild(engagementAmountInput);
+                row.appendChild(engagementAmountCell);
+                
+                tbody.appendChild(row);
+            }
+            table.appendChild(tbody);
+            container.appendChild(table);
+        } else {
+            // Si le nombre est 0, efface le contenu
+            container.innerHTML = '';
+        }
+    });
+});
+
+
+
+// Nouvelle fonctionnalité pour les concurrents admis
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('createAdmittedFieldsButton').addEventListener('click', function () {
+        const container = document.getElementById('admittedFieldsContainer');
+        const number = parseInt(document.getElementById('admittedNumber').value, 10);
+        
+        container.innerHTML = ''; // Efface le contenu précédent
+        
+        if (number > 0) {
+            // Crée un tableau pour afficher les concurrents et les montants des actes d'engagement
+            const table = document.createElement('table');
+            table.className = 'form-group';
+            
+            // Crée l'en-tête du tableau
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            const competitorHeader = document.createElement('th');
+            competitorHeader.textContent = 'Nom du Concurrent';
+            const engagementAmountHeader = document.createElement('th');
+            engagementAmountHeader.textContent = 'Montant des Actes d\'Engagement';
+            headerRow.appendChild(competitorHeader);
+            headerRow.appendChild(engagementAmountHeader);
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+            
+            // Crée le corps du tableau
+            const tbody = document.createElement('tbody');
+            for (let i = 1; i <= number; i++) {
+                const row = document.createElement('tr');
+                
+                // Colonne pour le nom du concurrent
+                const competitorCell = document.createElement('td');
+                const competitorInput = document.createElement('input');
+                competitorInput.type = 'text';
+                competitorInput.name = `admittedCompetitorName${i}`;
+                competitorInput.placeholder = `Nom du concurrent ${i}`;
+                competitorCell.appendChild(competitorInput);
+                row.appendChild(competitorCell);
+                
+                // Colonne pour le montant des actes d'engagement
+                const engagementAmountCell = document.createElement('td');
+                const engagementAmountInput = document.createElement('input');
+                engagementAmountInput.type = 'text';
+                engagementAmountInput.name = `admittedEngagementAmount${i}`;
+                engagementAmountInput.placeholder = `Montant des actes d'engagement ${i}`;
+                engagementAmountCell.appendChild(engagementAmountInput);
+                row.appendChild(engagementAmountCell);
+                
+                tbody.appendChild(row);
+            }
+            table.appendChild(tbody);
+            container.appendChild(table);
+        } else {
+            // Si le nombre est 0, efface le contenu
+            container.innerHTML = '';
+        }
+    });
+});
+
