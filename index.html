@@ -27,6 +27,8 @@
         <div class="container">
             <h2>Formulaire de Contact</h2>
             <form id="dynamicForm">
+                <!-- Existing Form Fields -->
+                
                 <div class="form-group">
                     <label for="organisme">Organisme :</label>
                     <select id="organisme" name="organisme">
@@ -104,6 +106,145 @@
                     <button type="button" id="createReponsesFieldsButton">Créer les champs</button>
                 </div>
                 <div id="reponsesFieldsContainer"></div>
+
+                <!-- New Section for Electronic Offers -->
+                <div class="form-group">
+                    <label for="electronicOffersNumber">Le président consulte, ensuite, sur le portail des marchés publics les offres déposées sous format électronique par les concurrents suivants :</label>
+                    <input type="number" id="electronicOffersNumber" name="electronicOffersNumber" placeholder="Entrez le nombre de concurrents">
+                    <button type="button" id="createElectronicOffersFieldsButton">Créer les champs</button>
+                </div>
+                <div id="electronicOffersFieldsContainer"></div>
+
+                <!-- New Section for Final List -->
+                <div class="form-group">
+                    <label for="finalListNumber">Le président arrête définitivement la liste des plis reçus, comme suit :</label>
+                    <input type="number" id="finalListNumber" name="finalListNumber" placeholder="Entrez le nombre de concurrents">
+                    <button type="button" id="createFinalListFieldsButton">Créer les champs</button>
+                </div>
+                <div id="finalListFieldsContainer"></div>
+
+                <!-- New Section for Additional Information -->
+                <div class="form-group">
+                    <p>Le président s'assure de la présence des membres dont la présence est obligatoire.</p>
+                    <p>Le président remet le support écrit contenant l'estimation des coûts détaillés des prestations.</p>
+                    <p>Les membres de la commission paraphent le support de l'estimation des coûts des prestations.</p>
+                    <p>Le président annonce les journaux et la date de publication au portail des marchés publics et, le cas échéant, les références des autres supports dans lesquels l'avis d'appel d'offres a été publié.</p>
+                    <p>Le président demande aux membres de la commission de formuler leurs réserves ou observations sur les vices susceptibles d'entacher la procédure.</p>
+                    <p>Le président ouvre les plis contenant les dossiers des concurrents, cite dans chacun d'eux la présence des enveloppes exigées. Il ouvre, ensuite, l'enveloppe portant la mention "dossiers administratif et technique", annonce les pièces contenues dans chaque dossier administratif et technique et dresse un état des pièces fournies par chaque concurrent.</p>
+                    <p>Cette formalité accomplie, la séance publique est suspendue. Les concurrents et le public se retirent de la salle.</p>
+                    <p>Ensuite, la commission se réunit à huis clos pour examiner les dossiers administratifs et techniques des concurrents, elle écarte les concurrents ci-après pour les motifs suivants :</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="excludedConcurrentsNumber">Nombre de concurrents écartés :</label>
+                    <input type="number" id="excludedConcurrentsNumber" name="excludedConcurrentsNumber" placeholder="Entrez le nombre de concurrents écartés">
+                    <button type="button" id="createExcludedConcurrentsFieldsButton">Créer les champs</button>
+                </div>
+                <div id="excludedConcurrentsFieldsContainer"></div>
+				
+				
+				
+				
+				<!-- Nouvelle section pour les concurrents admis sans réserves -->
+                <div class="form-group">
+                  <p>Elle arrête, ensuite, la liste des concurrents admis, en précisant ceux dont les dossiers comportent des erreurs matérielles, ou des discordances à rectifier, à savoir :</p>
+                  <p>A-Listes des concurrents admis sans réserves :</p>
+                  <label for="admisSansReservationsNumber">Nombre de concurrents admis sans réserves :</label>
+                  <input type="number" id="admisSansReservationsNumber" name="admisSansReservationsNumber" placeholder="Entrez le nombre de concurrents admis sans réserves">
+                  <button type="button" id="createAdmisSansReservationsFieldsButton">Créer les champs</button>
+                </div>
+                <div id="admisSansReservationsFieldsContainer"></div>
+				
+				
+				
+				
+				
+				
+				<!-- Nouvelle section pour les concurrents admis avec réserve -->
+                <div class="form-group">
+                   <p>B-Liste des concurrents admis avec réserve :</p>
+                   <label for="admisAvecReserveNumber">Nombre de concurrents admis avec réserve :</label>
+                   <input type="number" id="admisAvecReserveNumber" name="admisAvecReserveNumber" placeholder="Entrez le nombre de concurrents admis avec réserve">
+                   <button type="button" id="createAdmisAvecReserveFieldsButton">Créer les champs</button>
+                </div>
+                <div id="admisAvecReserveFieldsContainer"></div>
+				
+				
+				
+				
+				<!-- Nouvelle section pour les concurrents non admis -->
+                <div class="form-group">
+                   <p>C-Liste des concurrents non admis :</p>
+                   <label for="nonAdmisNumber">Nombre de concurrents non admis :</label>
+                   <input type="number" id="nonAdmisNumber" name="nonAdmisNumber" placeholder="Entrez le nombre de concurrents non admis">
+                   <button type="button" id="createNonAdmisFieldsButton">Créer les champs</button>
+                </div>
+                <div id="nonAdmisFieldsContainer"></div>
+
+              
+        
+              
+              <!-- Nouvelle section pour les concurrents écartés dont les dossiers doivent être retournés -->
+               <div class="form-group">
+                  <p>La séance publique est alors reprise et le président :</p>
+                  <ul>
+                    <li>- donne lecture de la liste des concurrents admis cités ci-dessus;</li>
+                    <li>- rend, contre décharge, aux concurrents écartés présents leurs dossiers, à l'exception des documents ayant été à l'origine de leur élimination;</li>
+                  </ul>
+                  <p>Il s'agit des concurrents suivants :</p>
+                  <label for="dossiersReturnedNumber">Nombre de concurrents écartés :</label>
+                  <input type="number" id="dossiersReturnedNumber" name="dossiersReturnedNumber" placeholder="Entrez le nombre de concurrents écartés">
+                  <button type="button" id="createDossiersReturnedFieldsButton">Créer les champs</button>
+             </div>
+             <div id="dossiersReturnedFieldsContainer"></div>
+              
+              
+              
+              
+              
+              <!-- Nouvelle section pour l'ouverture des enveloppes des concurrents admis -->
+              <div class="form-group">
+                <p>Le président procède, ensuite, à l'ouverture des enveloppes des concurrents admis portant la mention <strong>Offres Financières</strong> et donne lecture de la teneur des actes d'engagement, comme suit :</p>
+                <label for="engagementsNumber">Nombre de concurrents :</label>
+                <input type="number" id="engagementsNumber" name="engagementsNumber" placeholder="Entrez le nombre de concurrents">
+                <button type="button" id="createEngagementsFieldsButton">Créer les champs</button>
+              </div>
+              <div id="engagementsFieldsContainer"></div>
+              
+              
+              
+              <!-- Nouvelle section pour les membres de la commission et les concurrents écartés -->
+              <div class="form-group">
+                  <p>Les membres de la commission paraphent les actes d'engagement et, selon le cas, les bordereaux des prix, les détails estimatifs, les bordereaux des prix-détails estimatifs, les bordereaux du prix global, les décompositions du montant global, et le cas échéant, les bordereaux des prix pour approvisionnements. La commission poursuit alors ses travaux à huis clos. Elle écarte les concurrents suivants pour les motifs ci-après :</p>
+                  <label for="exclusionNumber">Nombre de concurrents écartés :</label>
+                  <input type="number" id="exclusionNumber" name="exclusionNumber" placeholder="Entrez le nombre de concurrents écartés">
+                  <button type="button" id="createExclusionFieldsButton">Créer les champs</button>
+             </div>
+             <div id="exclusionFieldsContainer"></div>
+              
+              
+              
+              
+              
+              <!-- Nouvelle section pour la vérification des opérations arithmétiques -->
+            <div class="form-group">
+              <p>Elle procède ensuite à la vérification des opérations arithmétiques des offres des concurrents admis et rectifie les erreurs de calcul relevées et rétablit les montants exacts des offres concernées. Ces rectifications donnent les résultats suivants :</p>
+              <label for="rectificationNumber">Nombre de concurrents avec rectifications :</label>
+              <input type="number" id="rectificationNumber" name="rectificationNumber" placeholder="Entrez le nombre de concurrents">
+              <button type="button" id="createRectificationFieldsButton">Créer les champs</button>
+           </div>
+           <div id="rectificationFieldsContainer"></div>
+
+
+
+
+
+
+
+
+
+
+
 
                 <div class="form-group">
                     <input type="submit" value="Envoyer">
