@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Formulaire Professionnel</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -25,7 +25,7 @@
     </nav>
     <main>
         <div class="container">
-            <h2>Formulaire de Contact</h2>
+            <h2>Modèle du procès-verbal de la séance d'appel d'offres ouvert ou restreint</h2>
             <form id="dynamicForm">
                 <!-- Existing Form Fields -->
                 
@@ -83,7 +83,7 @@
                     <p>S'est réunie en séance publique dans le bureau de...</p>
                     <input type="text" id="declarationPlace" name="declarationPlace" placeholder="Lieu et adresse" required>
                     
-                    <p>en vue de procéder à l'ouverture des plis concernant l'appel d'offres ouvert ou restreint sur offres de prix ou au rabais ou à majoration n°...</p>
+                    <p>en vue de procéder à l'ouverture des plis concernant l'appel d'offres ouvert ou restreint sur offres de prix ou au rabais ou à majoration n°:</p>
                     <input type="text" id="declarationNumber" name="declarationNumber" placeholder="Numéro" required>
                     
                     <p>relatif à...</p>
@@ -148,8 +148,7 @@
 				<!-- Nouvelle section pour les concurrents admis sans réserves -->
                 <div class="form-group">
                   <p>Elle arrête, ensuite, la liste des concurrents admis, en précisant ceux dont les dossiers comportent des erreurs matérielles, ou des discordances à rectifier, à savoir :</p>
-                  <p>A-Listes des concurrents admis sans réserves :</p>
-                  <label for="admisSansReservationsNumber">Nombre de concurrents admis sans réserves :</label>
+                  <label for="admisSansReservationsNumber">A-Listes des concurrents admis sans réserves :</label>
                   <input type="number" id="admisSansReservationsNumber" name="admisSansReservationsNumber" placeholder="Entrez le nombre de concurrents admis sans réserves">
                   <button type="button" id="createAdmisSansReservationsFieldsButton">Créer les champs</button>
                 </div>
@@ -160,10 +159,9 @@
 				
 				
 				
-				<!-- Nouvelle section pour les concurrents admis avec réserve -->
+			<!-- Nouvelle section pour les concurrents admis avec réserve -->
                 <div class="form-group">
-                   <p>B-Liste des concurrents admis avec réserve :</p>
-                   <label for="admisAvecReserveNumber">Nombre de concurrents admis avec réserve :</label>
+                   <label for="admisAvecReserveNumber">B-Liste des concurrents admis avec réserve :</label>
                    <input type="number" id="admisAvecReserveNumber" name="admisAvecReserveNumber" placeholder="Entrez le nombre de concurrents admis avec réserve">
                    <button type="button" id="createAdmisAvecReserveFieldsButton">Créer les champs</button>
                 </div>
@@ -226,7 +224,7 @@
               
               
               
-              <!-- Nouvelle section pour la vérification des opérations arithmétiques -->
+      <!-- Nouvelle section pour la vérification des opérations arithmétiques -->
             <div class="form-group">
               <p>Elle procède ensuite à la vérification des opérations arithmétiques des offres des concurrents admis et rectifie les erreurs de calcul relevées et rétablit les montants exacts des offres concernées. Ces rectifications donnent les résultats suivants :</p>
               <label for="rectificationNumber">Nombre de concurrents avec rectifications :</label>
@@ -237,7 +235,7 @@
               
               
               
-              <!-- Nouvelle section pour les offres financières écartées -->
+         <!-- Nouvelle section pour les offres financières écartées -->
           <div class="form-group">
             <p>Cette formalité accomplie, la commission écarte les offres financières jugées excessives et les offres financières jugées anormalement basses par rapport au montant de l'estimation établi par le maître d'ouvrage. </p>
             <label for="financialExclusionNumber">A-La liste des concurrents écartés :</label>
@@ -249,19 +247,99 @@
               
               
               <!-- Nouvelle section pour les concurrents admis -->
-       <div class="form-group">
-         <label for="admittedNumber">B-Liste des concurrents admis :</label>
-         <input type="number" id="admittedNumber" name="admittedNumber" placeholder="Entrez le nombre de concurrents">
-    <button type="button" id="createAdmittedFieldsButton">Créer les champs</button>
+         <div class="form-group">
+            <label for="admittedNumber">B-Liste des concurrents admis :</label>
+            <input type="number" id="admittedNumber" name="admittedNumber" placeholder="Entrez le nombre de concurrents">
+            <button type="button" id="createAdmittedFieldsButton">Créer les champs</button>
         </div>
         <div id="admittedFieldsContainer"></div>
+              
+              
+              
+              
+              
+        <div class="form-group">
+          <label for="prix-reference"></label>
+          <p>la commission détermine, ensuite, le prix de référence qui est de</p>
+          <input type="text" id="prix-reference" name="prix-reference" placeholder="Entrez le prix de référence" required>
+       </div>
+
+              
+              
+              
+       <div class="form-group">
+          <label for="classement">Classement des offres :</label>
+          <p>La commission procède, ensuite, au classement des offres des concurrents suivant les critères fixés au règlement de consultation. Ce classement donne les résultats suivants:</p>
+          <label for="nombreConcurrents">Nombre de concurrents :</label>
+          <input type="number" id="nombreConcurrents" name="nombreConcurrents" min="0">
+          <button type="button" onclick="afficherZonesTexte()">créer les champs</button>
+      <div id="zonesTexteConcurrents"></div>
+      </div>
+
+              
+              
+              
+              
+      <div class="form-group">
+         <label for="offreAvantageuse"></label>
+         <p>L'offre la plus avantageuse est l'offre présentée par :</p>
+         <input type="text" id="offreAvantageuse" name="offreAvantageuse" placeholder="" required>
+     </div>
+              
+              
+              
+     <div class="form-group">
+       <label for="delai"></label>
+        <p>La commission invite, par lettre recommandée avec accusé de réception, 
+        le concurrent ayant présenté l'offre économiquement la plus avantageuse dans un délai de<p/>
+        <input type="number" id="delai" name="delai" placeholder="jours" max="7" required style="width: 60px;">
+        <span> à :</span>
+    </div>
+              
+              
+              
+ 
+   <div class="form-group">
+      <p>
+        - produire le complément des pièces du dossier administratif;<br>
+        - confirmer les rectifications des erreurs matérielles relevées, le cas échéant;<br>
+        - régulariser les discordances constatées entre les diverses pièces de son dossier administratif, le cas échéant;<br>
+        - produire les échantillons ou les prototypes exigés par le règlement de consultation, le cas échéant;<br>
+        - justifier le ou les prix unitaires principaux jugés excessifs ou anormalement bas, le cas échéant.
+     </p>
+     <p>
+        Le président de la commission suspend la séance et fixe la date et l'heure pour la reprise des travaux de la commission.
+     </p>
+  </div>
+              
+              
+              
+  <div class="form-group" style="display: flex; align-items: center;">
+    <p style="margin-right: 5px;">Le</p>
+    <input type="text" id="dateHeure" name="dateHeure" placeholder="Date et Heure" required style="margin-right: 5px;">
+    <p>, la commission d'appels d'offres reprend la séance.</p>
+  </div>
+              
+              
+              
+  <div class="form-group">
+    <p>La commission s'assure de l'existence de la lettre ayant servi de moyen d'invitation du concurrent concerné.</p>
+ </div>
 
 
 
 
 
-
-
+              
+              
+              
+              
+     
+              
+              
+              
+              
+        
 
 
 
