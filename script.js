@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('organisme').addEventListener('change', checkOtherOption);
     document.getElementById('createPresidentFieldsButton').addEventListener('click', createPresidentFields);
@@ -674,3 +673,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+
+function afficherZonesTexte() {
+    const nombreConcurrents = document.getElementById('nombreConcurrents').value;
+    const zonesTexteConcurrents = document.getElementById('zonesTexteConcurrents');
+    zonesTexteConcurrents.innerHTML = ''; // Clear previous text areas
+
+    if (nombreConcurrents > 0) {
+        for (let i = 1; i <= nombreConcurrents; i++) {
+            const label = document.createElement('label');
+            label.setAttribute('for', 'concurrent' + i);
+            label.textContent = 'Concurrent ' + i + ' :';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = 'concurrent' + i;
+            input.name = 'concurrent' + i;
+            input.placeholder = 'Nom du concurrent ' + i;
+            input.required = true;
+
+            zonesTexteConcurrents.appendChild(label);
+            zonesTexteConcurrents.appendChild(input);
+        }
+    }
+}
