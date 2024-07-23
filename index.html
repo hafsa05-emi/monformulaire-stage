@@ -89,11 +89,12 @@
                     <p>relatif à...</p>
                     <input type="text" id="declarationObject" name="declarationObject" placeholder="Objet de l'appel d'offres, y compris lieu d'exécution, commune, province, etc." required>
                     
-                    <p>conformément à l'avis publié dans...</p>
+                    <p>nformément à l'avis publié dans</p>
                     <input type="text" id="declarationPublication" name="declarationPublication" placeholder="Journaux ou avis et dates de parution" required>
                 </div>
 
                 <div class="form-group">
+                    <p> A l'ouverture de la séance, le président dépose sur le bureau tous les plis recu des concurrents, à savoir.</p>
                     <label for="concurrentsNumber">Nombre de concurrents :</label>
                     <input type="number" id="concurrentsNumber" name="concurrentsNumber" placeholder="Entrez le nombre de concurrents">
                     <button type="button" id="createConcurrentsFieldsButton">Créer les champs</button>
@@ -101,6 +102,7 @@
                 <div id="concurrentsFieldsContainer"></div>
 
                 <div class="form-group">
+                    <p> Il invite les concurrents présents qui n'auraient pas déposé leurs plis, à les lui remettre séance tenante</p>
                     <label for="reponsesNumber">Nombre de concurrents présents ayant répondu :</label>
                     <input type="number" id="reponsesNumber" name="reponsesNumber" placeholder="Entrez le nombre de concurrents ayant répondu">
                     <button type="button" id="createReponsesFieldsButton">Créer les champs</button>
@@ -109,7 +111,8 @@
 
                 <!-- New Section for Electronic Offers -->
                 <div class="form-group">
-                    <label for="electronicOffersNumber">Le président consulte, ensuite, sur le portail des marchés publics les offres déposées sous format électronique par les concurrents suivants :</label>
+                  <p>Le président consulte, ensuite, sur le portail des marchés publics les offres déposées sous format électronique par les concurrents suivants :</p>
+                    <label for="electronicOffersNumber">nombre des concurrents</label>
                     <input type="number" id="electronicOffersNumber" name="electronicOffersNumber" placeholder="Entrez le nombre de concurrents">
                     <button type="button" id="createElectronicOffersFieldsButton">Créer les champs</button>
                 </div>
@@ -172,8 +175,7 @@
 				
 				<!-- Nouvelle section pour les concurrents non admis -->
                 <div class="form-group">
-                   <p>C-Liste des concurrents non admis :</p>
-                   <label for="nonAdmisNumber">Nombre de concurrents non admis :</label>
+                   <label for="nonAdmisNumber">C-Liste des concurrents non admis :</label>
                    <input type="number" id="nonAdmisNumber" name="nonAdmisNumber" placeholder="Entrez le nombre de concurrents non admis">
                    <button type="button" id="createNonAdmisFieldsButton">Créer les champs</button>
                 </div>
